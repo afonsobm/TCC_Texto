@@ -1,0 +1,13 @@
+{
+    "ltex.enabled": [
+        //"bibtex",
+        "latex",
+        "markdown",
+        "org",
+        "restructuredtext",
+        "rsweave"
+    ],
+    "ltex.language": "pt-BR",
+    "ltex.additionalRules.enablePickyRules": true,
+    "ltex.additionalRules.motherTongue": "en-US"
+}
