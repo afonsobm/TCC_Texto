@@ -1,40 +1,85 @@
+Neste capítulo, será introduzido os principais tópicos do projeto, além de mostrar sua relevância para o escopo da engenharia moderna
+e as metodologias que são usadas para alcançar seus objetivos. Ao final é descrito a estrutura organizacional do texto.
+
 \section{Tema}
 
-\paragraph{}Falar do que se trata o trabalho usando uma visão macroscópica (tamanho do texto: 1 ou 2 parágrafos no máximo).
-
-\paragraph{}Sobre que grande área de conhecimento você falará?
-
-\paragraph{}Dada esta grande área, qual é o subconjunto de conhecimento sobre o qual será o seu trabalho?
-
-\paragraph{}Qual o problema a ser resolvido?
-
+O tema do trabalho é sobre o estudo de uma forma de simular Respostas ao Impulso de Ambientes Acústicos (RIR) com parametrizações diferentes a partir de amostras 
+de RIR gravadas em ambientes reais, e ainda usar a RIR para gerar amostras de áudio em locais simulados a partir de gravações de voz reais.
 
 \section{Delimitação}
 
-\paragraph{}Realizar uma delimitação informando de quem é a demanda, em que local, e em que momento no tempo. Eventualmente, pode ser mais fácil começar pensando por exclusão, ou seja, para quem não serve, onde não deve ser aplicado, e em seguida pegar o universo que sobra (tamanho do texto: livre).
+O estudo é focado em inferir uma técnica de reforço de dados tanto em amostras reais de RIR quanto nas gravações de voz. Este trabalho está delimitado em apenas 
+modificar amostras reais de áudio, e não gerar amostras simuladas sem uma gravação de base.
 
+%\paragraph{}Realizar uma delimitação informando de quem é a demanda, em que local, e em que momento no tempo. Eventualmente, pode ser mais fácil começar pensando por exclusão, ou seja, para quem não serve, onde não deve ser aplicado, e em seguida pegar o universo que sobra (tamanho do texto: livre).
 
 \section{Justificativa}
 
-\paragraph{}Apresentar o porquê do tema ser interessante de ser estudado. Cuidado, não é a motivação particular. Devem ser apresentadas razões para que alguém deva se interessar no assunto, e não quais foram suas razões particulares que motivaram você a estudá-lo (tamanho do texto: livre).
+Com o avanço das tecnologias de automação residencial, assistentes pessoais nos smartphones e comunicação online, o estudo de técnicas de
+processamento de áudio (no caso específico deste trabalho, relacionados a voz), tornou-se mais relevante para a sociedade.
+Uma das características mais importantes a ser detectada no processamento de áudio é a Resposta ao Impulso do ambiente, 
+que representa o modelo acústico do ambiente, pois através desta é possível extrair informações pertinentes do local em que o áudio foi gravado
+e também detectar a posição de fontes sonoras e as isolar para reconhecimento.
+No âmbito da área de reconhecimento de voz, a fala reverberante, ou seja, o sinal de fala combinado com o modelo acústico do ambiente
+é um dos desafios encontrados para a detecção da voz, tornando a identificação do RIR de vital importância para o reconhecimento de fala \cite{FAR-FIELD_ASR}.
+
+Junto a isso, houve avanços no âmbito do aprendizado de máquina, fornecendo alternativas para os métodos tradicionais
+de processamento de áudio \cite{ML_Speech_Rec}.
+Modelos de arquitetura de redes neurais necessitam de um grande volume de dados para que sejam treinados e aprimorados, e um dos mais recentes
+desafios nessa área é o fato das bases de RIR não serem extensas, conforme esclarecidas no artigo \cite{Estimation_RT_DRR},
+pois capturar essa extensa quantidade de gravações de áudio é uma tarefa alto custo tanto financeiro e temporal, necessitando de equipamento especializado
+e diversos locais com características de modelo sonoro diferentes e pessoas diversas para amostras de voz.
 
 
 \section{Objetivos}
 
-\paragraph{}Informar qual é o objetivo geral do trabalho, isto é, aquilo que deve ser atendido e que corresponde ao indicador inequívoco do sucesso do seu trabalho. Pode acontecer que venha a existir um conjunto de objetivos específicos, que complementam o objetivo geral (tamanho do texto: livre, mas cuidado para não fazer uma literatura romanceada, afinal esta seção trata dos objetivos).
+O objetivo deste trabalho é desenvolver um algoritmo capaz de gerar amostras de RIR simuladas para diferentes ambientes a partir de uma RIR real e
+gerar um banco de dados de amostras de voz convoluídas com as RIR simuladas e com ruídos para uso em treinamento de redes neurais.
+Dessa forma, têm-se como objetivos específicos:
+
+\begin{enumerate}
+      \item Propor um algoritmo que altere as características da RIR para simular diferentes ambientes com RIR diferentes.
+      \item Elaborar um algoritmo que faça o acréscimo de ruídos pontuais ou ruídos de fundo em uma amostra de voz.
+      \item Desenvolver um sistema computacional que aplique ambos os algoritmos anteriores em sequência para gerar
+      amostras de voz em Ambientes ruidosos.
+\end{enumerate}
 
 
 \section{Metodologia}
 
-\paragraph{}Como é a abordagem do assunto. Como foi feita a pesquisa, se vai houve validação, etc. Em resumo, você de explicar qual foi sua estratégia para atender ao objetivo do trabalho (tamanho do texto: livre).
+Um sinal de voz gravado em um ambiente pode ser interpretado como a junção de três partes; uma amostra de voz pura, sem nenhum fator externo
+ou reverberação envolvido, convoluída com a Resposta ao Impulso da sala (RIR) onde ocorre a gravação, somada a um sinal de ruído, podendo este 
+ser pontual ou um ruído de ambiente. A RIR representa um modelo acústico do ambiente, que define como um receptor acústico irá receber caso o áudio
+seja gerado e percebido de dentro deste ambiente. Uma definição de Resposta ao Impulso é a de uma função que registra a pressão sonora temporalmente
+em um ambiente fechado após uma excitação extremamente curta e cheia de energia (dirac).
+
+Neste trabalho é proposto uma forma de gerar RIR simuladas partindo de uma RIR real, ou seja, gravando um áudio que representa um impulso em um ambiente
+fechado real, e alterando suas propriedades. Reproduz-se o que foi proposto no artigo de data augmentation para respostas ao impulso para
+estimação do modelo acústico \cite{RIR_Data_Aug}, onde é gerado RIR simuladas modificando as propriedades de Tempo de Decaimento (T60) e de
+razão entre áudio direto e reverberado (DRR). Através dessas duas propriedades, defini-se praticamente todos os RIR possíveis de serem gravados
+artificialmente.
+
+Para gerar as amostras de vozes reverberadas que compõe a base de dados, acompanha-se o que é proposto no artigo de estudo de data
+augmentation em vozes reverberadas \cite{Speech_Rec}, onde são convoluídos sinais de voz puros com os RIR simulados que foram gerados anteriormente.
+Além disso, é acrescentado a essa sinal de voz reverberado ruídos diversos, que são caracterizados de duas formas: ruídos pontuais e de ambiente.
+Os ruídos pontuais são amostras de áudio curta que podem ser introduzidos em qualquer momento da fala, já os ruídos de ambiente são sons constantes
+ao fundo da gravação para simular um ambiente externo. Os ruídos foram extraídos da biblioteca MUSAN \cite{noiseLib}.
+
+Através desses dois passos, são gerados vários sinais de vozes reverberados artificialmente. A simulação do RIR tem por objetivo colocar
+a amostra de voz em vários ambientes fechados, e já os ruídos ajudam drasticamente no treinamento de redes neurais impedindo que as redes fiquem
+viciadas em características muito específicas da fala durante o treinamento, pois eles tendem a simular os fatores externos que podem estar envolvidos em uma
+gravação real.
 
 
 \section{Descrição}
 
-\paragraph{}No capítulo 2 será .....
+\paragraph{}O capítulo 2 apresenta uma breve história sobre as principais aplicações do tema e os desafios que este trabalho auxilia na solução.
 
-\paragraph{}O capítulo 3 apresenta ...
+\paragraph{}No capítulo 3 será descrito a metodologia usada para fazer a \textit{data augmentation} de uma RIR já existente.
 
-\paragraph{}Os .... são apresentados no capítulo 4. Nele será explicitado ...
+\paragraph{}No capítulo 4 explica-se a metodologia usada para gerar sinais de voz aleatórios a partir de RIRs simuladas anteriormente e da adição
+de ruídos pontuais ou de fundo.
 
-\paragraph{}E assim vai até chegar na conclusão.
+\paragraph{}O capítulo 5 é focado em exibir os resultados obtidos através dos métodos anteriores e demonstrar sua eficácia.
+
+\paragraph{}Por fim, o capítulo 6 trata das conclusões que são tiradas sobre este projeto, além de mostrar trabalhos futuros.
