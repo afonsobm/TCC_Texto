@@ -1,3 +1,30 @@
-\section{Histórico da Pesquisa de Reconhecimento de Voz}
+Este capítulo é dedicado à introdução do leitor ao principal tópico de estudo do projeto e assim mostrar
+algumas aplicações onde este é usado, além de apresentar os desafios relacionados à estas aplicações.
 
-\section{Desafios do Reconhecimento de Voz em Campo Aberto}
+\section{Resposta ao Impulso de Ambiente Acústico e suas Aplicações}
+
+Dentre os diversos tópicos na grande área de estudo de sinais de áudio, destaca-se a detecção e reconhecimento de fontes acústicas no espaço físico.
+Um caso específico deste tópico é sobre sinais de voz gravados em ambientes fechados, onde um ou mais microfones são posicionados no ambiente afastados
+da fonte sonora, normalmente uma pessoa que performa a gravação.
+Estes sinais são corrompidos pela reverberação do ambiente, que surge a partir da sobreposição da onda sonora anecoica que chega ao microfone com a 
+onda sonora atenuada e refletida nas paredes do ambiente fechado.
+Este sinal pode ser modelado da seguinte forma:
+
+\begin{equation}
+    Y(t) = s(t) \ast h(t) + n(t)
+\end{equation}
+
+Onde $Y(t)$ representa o sinal de voz em campo distante, $s(t)$ o sinal de voz anecoico e sem atenuação, $h(t)$ a RIR e $n(t)$ o sinal de ruído que pode
+estar presente no ambiente.
+
+% TODO: completar isso
+Este trabalho é focado em RIR. 
+
+% SPEECH signals recorded in an enclosed space bymicro-phones placed at a distance from the
+%  source are often cor-rupted by reverberation, which arises fromthe superposition ofdelayed and attenuated copies of the 
+%  anechoic speech signal. Re-verberation causes signal degradation, typically leading to de-creased speech intelligibility [1],
+%   [2]and performance deteriora-tion in speech recognition systems [3]–[5]. Hence, many speechcommunication applications such as teleconferencing 
+%   applica-tions, voice-controlled systems, or hearing aids, require effec-tive dereverberation algorithms [4]–[6].
+
+
+\section{Desafios correlacionados a RIR}

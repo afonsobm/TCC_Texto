@@ -1,0 +1,1 @@
+{"rule":"HUNSPELL_RULE","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
