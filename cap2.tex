@@ -4,7 +4,7 @@ algumas aplicações onde este é usado, além de apresentar os desafios relacio
 \section{Resposta ao Impulso de Ambiente Acústico e suas Aplicações}
 
 Dentre os diversos tópicos na grande área de estudo de sinais de áudio, destaca-se a detecção e reconhecimento de fontes acústicas no espaço físico.
-Um caso específico deste tópico é sobre sinais de voz gravados em ambientes fechados, onde um ou mais microfones são posicionados no ambiente afastados
+Um caso específico deste tópico é sobre sinais de voz gravados em ambientes fechados, onde um ou mais microfones são posicionados na sala afastados
 da fonte sonora, normalmente uma pessoa que performa a gravação.
 Estes sinais são corrompidos pela reverberação do ambiente, que surge a partir da sobreposição da onda sonora anecoica que chega ao microfone com a 
 onda sonora atenuada e refletida nas paredes do ambiente fechado.
@@ -14,17 +14,24 @@ Este sinal pode ser modelado da seguinte forma:
     Y(t) = s(t) \ast h(t) + n(t)
 \end{equation}
 
-Onde $Y(t)$ representa o sinal de voz em campo distante, $s(t)$ o sinal de voz anecoico e sem atenuação, $h(t)$ a RIR e $n(t)$ o sinal de ruído que pode
+% ### TODO: [FIGURA] exemplificando voz reverberada e figura mostrando o que é RIR
+
+Onde $Y(t)$ representa o sinal de voz em campo distante, $s(t)$ o sinal de voz anecoico, $h(t)$ a RIR e $n(t)$ o sinal de ruído que pode
 estar presente no ambiente.
+Dessa forma, é possível inferir que a RIR representa o modelo acústico de uma sala, para uma determinada combinação de fatores do ambiente, incluindo: 
+temperatura e umidade relativa do ar, pressão atmosférica, material das paredes e posicionamento de móveis.
+Reverberação causa degradação do sinal de voz, levando à perda de clareza na comunicação \cite{Speech_intellig_hear} e à redução da performance
+de sistemas de reconhecimento de voz \cite{reverb_sup_speech_reg}. Este problema demonstra a necessidade de identificar dinamicamente o modelo acústico
+do ambiente para que possam ser mitigadas as perdas nas amostras de voz gravadas e assim facilitar os algoritmos que usam esses sinais.
 
-% TODO: completar isso
-Este trabalho é focado em RIR. 
-
-% SPEECH signals recorded in an enclosed space bymicro-phones placed at a distance from the
-%  source are often cor-rupted by reverberation, which arises fromthe superposition ofdelayed and attenuated copies of the 
-%  anechoic speech signal. Re-verberation causes signal degradation, typically leading to de-creased speech intelligibility [1],
-%   [2]and performance deteriora-tion in speech recognition systems [3]–[5]. Hence, many speechcommunication applications such as teleconferencing 
-%   applica-tions, voice-controlled systems, or hearing aids, require effec-tive dereverberation algorithms [4]–[6].
-
+% ### TODO: completar isso, exemplificar reconhecimento de voz e separação de fontes
+Este projeto é focado no estudo de uma forma de gerar RIRs simuladas a partir de RIRs reais devido à sua importância para diversas
+aplicações usadas atualmente na indústria. Uma de suas aplicações é na análise e desenvolvimento de algoritmos de 
+reconhecimento de voz robusta \cite{reverb_sup_speech_reg}, onde é necessário inferir a RIR para que possa ser feita a comparação entre
+a supressão da reverberação ideal com a cega.
+Outra aplicação da RIR é para desenvolvimento de algoritmos para localização e separação de fontes sonoras \cite{Source_sep_RIR},
+onde as RIRs são usadas no auxílio do mapeamento acústico de ambientes reverberante através de algoritmos de separação de fonte às cegas.
 
 \section{Desafios correlacionados a RIR}
+
+% ### TODO: aplicações em deep learning e pq falta dado
