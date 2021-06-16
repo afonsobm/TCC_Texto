@@ -43,7 +43,6 @@ Reverberação causa degradação do sinal de voz, levando à perda de clareza n
 de sistemas de reconhecimento de voz \cite{reverb_sup_speech_reg}. Este problema demonstra a necessidade de identificar dinamicamente o modelo acústico
 do ambiente para que possam ser mitigadas as perdas nas amostras de voz gravadas e assim facilitar os algoritmos que usam esses sinais.
 
-% ### TODO: completar isso, exemplificar reconhecimento de voz e separação de fontes
 Este projeto é focado no estudo de uma forma de gerar RIRs simuladas a partir de RIRs reais devido à sua importância para diversas
 aplicações usadas atualmente na indústria. Uma de suas aplicações é na análise e desenvolvimento de algoritmos de 
 reconhecimento de voz robusta \cite{reverb_sup_speech_reg}, onde é necessário inferir a RIR para que possa ser feita a comparação entre
@@ -51,6 +50,44 @@ a supressão da reverberação ideal com a cega.
 Outra aplicação da RIR é para desenvolvimento de algoritmos para localização e separação de fontes sonoras \cite{Source_sep_RIR},
 onde as RIRs são usadas no auxílio do mapeamento acústico de ambientes reverberante através de algoritmos de separação de fonte às cegas.
 
-\section{Desafios correlacionados a RIR}
+\section{Desafios correlacionados à RIR}
 
-% ### TODO: aplicações em deep learning e pq falta dado
+\begin{figure} [H]
+    \begin{subfigure}{1\textwidth}
+        \centering
+        \includegraphics[scale=0.35]{pub_DL_IEEE.png}
+        \caption{Publicações por ano - IEEE}    
+    \end{subfigure}
+    \begin{subfigure}{1\textwidth}
+        \centering
+        \includegraphics[scale=0.35]{pub_DL_Springer.png}
+        \caption{Publicações por ano - Springer\textregistered}    
+    \end{subfigure}
+    \caption{Gráficos de quantidade de artigos publicados por ano relacionados com \textit{Deep Learning}}
+    \label{fig:pub_DL}
+\end{figure}
+
+É possível notar um recente aumento de pesquisas relacionadas à área de aprendizado de máquina no meio científico (especialmente sobre a subdivisão de 
+\textit{Deep Learning}) \cite{Study_SR_DL}. Observando a figura \ref{fig:pub_DL} \cite{Jounal_Awareness_DL} nota-se que após 2015, houve um aumento 
+considerável de publicações em conferências do IEEE e o mesmo pode ser constatado para artigos em livros publicados pela editora Springer\textregistered.
+Muitas dessas publicações são dedicadas para áreas de pesquisa relacionadas com áudio \cite{Study_SR_DL, Speech_proc_plus_DL, Source_Sep_DL}; de acordo com o artigo \cite{Survey_DL}, aproximadamente 20\% 
+das publicações são voltadas para o tópico de reconhecimento de voz usando técnicas de \textit{Deep Learning} em suas metodologias.
+
+% ### TODO: desafio de faltar dado para deep learning
+Um dos maiores desafios enfrentados ao utilizar técnicas de \textit{Deep Learning} é de obter uma grande quantidade de dados para treinamento.
+Pode-ser observar um exemplo disso em \cite{Estimation_RT_DRR,ACE_Data_Aug_Eval}, onde os autores precisaram agrupar dados de mais de 5 bases contendo
+RIRs para que fosse possível treinar e avaliar suas redes.
+No caso de bases de dados que envolvem RIRs, o motivo de não existir uma alta variedade de dados é devido às dificuldades
+de realizar a gravação dos áudios \cite{Recording_RIR_2}.
+Para gerar o impulso sonoro, é necessário de uma fonte sonora (por exemplo, um alto-falante) capaz de realizar uma varredura de senos com o mínimo de distorção
+possível, ou usar um equipamento para iniciar um som de decaimento rápido e de alta intensidade (por exemplo, um balão estourando) \cite{Recording_RIR}.
+A gravação do impulso requer microfones que estejam dentro de uma câmara anecoica, capacitando assim o microfone de gravar apenas o som vindo direto
+da fonte sonora, e não as ondas que são refletidas nas paredes.
+Não menos importante, para aumentar a quantidade de amostras na base, deve-se não só gravar o áudio não só em diferentes posições no ambiente
+e distâncias da fonte-microfone, como também preparar estes mesmos procedimentos em ambientes diferentes, acarretando na locomoção de muitos equipamentos
+especializados entre localizações físicas.
+
+
+\section{\textit{Data Augmentation}}
+
+% ### TODO: Figura explicando 
