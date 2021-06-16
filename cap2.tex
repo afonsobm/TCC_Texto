@@ -7,8 +7,27 @@ Dentre os diversos tópicos na grande área de estudo de sinais de áudio, desta
 Um caso específico deste tópico é sobre sinais de voz gravados em ambientes fechados, onde um ou mais microfones são posicionados na sala afastados
 da fonte sonora, normalmente uma pessoa que performa a gravação.
 Estes sinais são corrompidos pela reverberação do ambiente, que surge a partir da sobreposição da onda sonora anecoica que chega ao microfone com a 
-onda sonora atenuada e refletida nas paredes do ambiente fechado.
-Este sinal pode ser modelado da seguinte forma:
+onda sonora atenuada e refletida nas paredes do ambiente fechado. 
+
+\begin{figure} [H]
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.4]{camara_anecoica.png}
+        \caption{Sala anecoica}    
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.4]{camara_reverb.png}    
+        \caption{Sala reverberante}    
+    \end{subfigure}
+    \caption{Representação de uma sala anecoica e reverberante}
+    \label{fig:Rooms}
+\end{figure}
+
+Observa-se na figura \ref{fig:Rooms} uma representação de uma sala anecoica, onde o único áudio capturado pelo microfone é a onda sonora direta
+enviada pela fonte, sem nenhuma reflexão do ambiente; já na sala reverberante, nota-se que o áudio capturado será uma combinação da onda sonora direta
+com as refletidas nas paredes. 
+Este sinal reverberado pode ser modelado da seguinte forma:
 
 \begin{equation}
     Y(t) = s(t) \ast h(t) + n(t)

@@ -17,7 +17,7 @@ modificar amostras reais de áudio, e não gerar amostras simuladas sem uma grav
 
 Com o avanço das tecnologias de automação residencial, assistentes pessoais nos smartphones e comunicação online, o estudo de técnicas de
 processamento de áudio (no caso específico deste trabalho, relacionados a voz), tornou-se mais relevante para a sociedade.
-Uma das características mais importantes a ser detectada no processamento de áudio é a Resposta ao Impulso do ambiente, 
+Uma das características mais importantes a ser detectada no processamento de áudio é a Resposta ao Impulso de salas, 
 que representa o modelo acústico do ambiente, pois através desta é possível extrair informações pertinentes do local em que o áudio foi gravado
 e também detectar a posição de fontes sonoras e as isolar para reconhecimento.
 No âmbito da área de reconhecimento de voz, a fala reverberante, ou seja, o sinal de fala combinado com o modelo acústico do ambiente
@@ -27,7 +27,7 @@ Junto a isso, houve avanços no âmbito do aprendizado de máquina, fornecendo a
 de processamento de áudio \cite{ML_Speech_Rec}.
 Modelos de arquitetura de redes neurais necessitam de um grande volume de dados para que sejam treinados e aprimorados, e um dos mais recentes
 desafios nessa área é o fato das bases de RIR não serem extensas, conforme esclarecidas no artigo \cite{Estimation_RT_DRR},
-pois capturar essa extensa quantidade de gravações de áudio é uma tarefa alto custo tanto financeiro e temporal, necessitando de equipamento especializado
+pois realizar uma grande quantidade de gravações de áudio é uma tarefa de alto custo tanto financeiro e temporal, necessitando de equipamento especializado
 e diversos locais com características de modelo sonoro diferentes e pessoas diversas para amostras de voz.
 
 
@@ -38,37 +38,37 @@ gerar um banco de dados de amostras de voz convoluídas com as RIR simuladas e c
 Dessa forma, têm-se como objetivos específicos:
 
 \begin{enumerate}
-      \item Propor um algoritmo que altere as características da RIR para simular diferentes ambientes com RIR diferentes.
-      \item Elaborar um algoritmo que faça o acréscimo de ruídos pontuais ou ruídos de fundo em uma amostra de voz.
+      \item Propor um algoritmo que altere as características da RIR para simular diferentes ambientes com RIR diferentes;
+      \item Elaborar um algoritmo que faça o acréscimo de ruídos pontuais ou ruídos de fundo em uma amostra de voz;
       \item Desenvolver um sistema computacional que aplique ambos os algoritmos anteriores em sequência para gerar
-      amostras de voz em Ambientes ruidosos.
+      amostras de voz em ambientes ruidosos.
 \end{enumerate}
 
 
 \section{Metodologia}
 
-Um sinal de voz gravado em um ambiente pode ser interpretado como a junção de três partes; uma amostra de voz pura, sem nenhum fator externo
+Um sinal de voz gravado em um ambiente pode ser interpretado como a junção de três partes: uma amostra de voz pura, sem nenhum fator externo
 ou reverberação envolvido, convoluída com a Resposta ao Impulso da sala (RIR) onde ocorre a gravação, somada a um sinal de ruído, podendo este 
 ser pontual ou um ruído de ambiente. A RIR representa um modelo acústico do ambiente, que define como um receptor acústico irá receber caso o áudio
 seja gerado e percebido de dentro deste ambiente. Uma definição de Resposta ao Impulso é a de uma função que registra a pressão sonora temporalmente
-em um ambiente fechado após uma excitação extremamente curta e cheia de energia (dirac).
+em um ambiente fechado após uma excitação extremamente curta e cheia de energia (impulso de Dirac).
 
-Neste trabalho é proposto uma forma de gerar RIR simuladas partindo de uma RIR real, ou seja, gravando um áudio que representa um impulso em um ambiente
+Neste trabalho é proposta uma forma de gerar RIR simuladas partindo de uma RIR real, ou seja, gravando um áudio que representa um impulso em um ambiente
 fechado real, e alterando suas propriedades. Reproduz-se o que foi proposto no artigo de data augmentation para respostas ao impulso para
-estimação do modelo acústico \cite{RIR_Data_Aug}, onde é gerado RIR simuladas modificando as propriedades de Tempo de Decaimento (T60) e de
-razão entre áudio direto e reverberado (DRR). Através dessas duas propriedades, defini-se praticamente todos os RIR possíveis de serem gravados
+estimação do modelo acústico \cite{RIR_Data_Aug}, onde são geradas RIRs simuladas, modificando-se as propriedades de Tempo de Decaimento (T60) e de
+razão entre áudio direto e reverberado (DRR). Através dessas duas propriedades, define-se praticamente todas as RIRs possíveis de serem gravadas
 artificialmente.
 
 Para gerar as amostras de vozes reverberadas que compõe a base de dados, acompanha-se o que é proposto no artigo de estudo de data
-augmentation em vozes reverberadas \cite{Speech_Rec}, onde são convoluídos sinais de voz puros com os RIR simulados que foram gerados anteriormente.
+augmentation em vozes reverberadas \cite{Speech_Rec}, onde são convoluídos sinais de voz anecoicos com as RIRs simuladas que foram geradas anteriormente.
 Além disso, é acrescentado a essa sinal de voz reverberado ruídos diversos, que são caracterizados de duas formas: ruídos pontuais e de ambiente.
-Os ruídos pontuais são amostras de áudio curta que podem ser introduzidos em qualquer momento da fala, já os ruídos de ambiente são sons constantes
-ao fundo da gravação para simular um ambiente externo. Os ruídos foram extraídos da biblioteca MUSAN \cite{noiseLib}.
+Os ruídos pontuais são amostras de áudio curtas que podem ser introduzidos em qualquer momento da fala; já os ruídos de ambiente são sons constantemente
+presentes ao fundo da gravação para simular um ambiente externo. Os ruídos foram extraídos da biblioteca MUSAN \cite{noiseLib}.
 
-Através desses dois passos, são gerados vários sinais de vozes reverberados artificialmente. A simulação do RIR tem por objetivo colocar
-a amostra de voz em vários ambientes fechados, e já os ruídos ajudam drasticamente no treinamento de redes neurais impedindo que as redes fiquem
-viciadas em características muito específicas da fala durante o treinamento, pois eles tendem a simular os fatores externos que podem estar envolvidos em uma
-gravação real.
+Através desses dois passos, são gerados vários sinais de vozes reverberados artificialmente. A simulação da RIR tem por objetivo colocar
+a amostra de voz em vários ambientes fechados, e a inclusão de ruídos ajudam drasticamente no treinamento de redes neurais, impedindo que as redes fiquem
+viciadas em características muito específicas da fala durante o treinamento, uma vez que tendem a simular 
+os fatores externos que podem estar envolvidos em uma gravação real.
 
 
 \section{Descrição}
