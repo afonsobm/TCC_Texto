@@ -84,10 +84,27 @@ possível, ou usar um equipamento para iniciar um som de decaimento rápido e de
 A gravação do impulso requer microfones que estejam dentro de uma câmara anecoica, capacitando assim o microfone de gravar apenas o som vindo direto
 da fonte sonora, e não as ondas que são refletidas nas paredes.
 Não menos importante, para aumentar a quantidade de amostras na base, deve-se não só gravar o áudio não só em diferentes posições no ambiente
-e distâncias da fonte-microfone, como também preparar estes mesmos procedimentos em ambientes diferentes, acarretando na locomoção de muitos equipamentos
+e distâncias da fonte-microfone, como também preparar estes mesmos procedimentos em ambientes diferentes, levando ao transporte de diversos equipamentos
 especializados entre localizações físicas.
-
 
 \section{\textit{Data Augmentation}}
 
-% ### TODO: Figura explicando 
+% ### TODO: [FIGURA] explicando caminho a ser tomada
+
+\textit{Data Augmentation} representa um conjunto de técnicas que são usadas em dados já existentes com o intuito de gerar cópias
+modificadas que se enquadram para uma determinada aplicação. No contexto de \textit{Deep Learning}, essas técnicas tornam-se vitais
+para incrementar artificialmente bases de dados para treinamento que não possuem uma alta variedade de amostras, e isso inclui 
+dados de áudio \cite{DL_Data_Aug_sc,Metric_Data_Aug_sc}.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[scale=0.6]{flow-geral.png}
+    \caption{Fluxo geral de procedimentos para gerar sinais de voz reverberantes.}
+    \label{fig:flow-geral}
+\end{figure} 
+
+No escopo deste trabalho, de acordo com a figura \ref{fig:flow-geral} usaremos duas técnicas de \textit{Data Augmentation} para gerar amostras
+de voz reverberantes. Uma das técnicas é voltada para simulação de RIRs, que altera suas propriedades para que possa ser simulado diferentes condições
+e posições em um determinado ambiente; já a outra técnica é desenvolvida para simular ruídos no ambiente, que adiciona tanto ruídos pontuais em um trecho
+da amostra de voz, sendo este convoluído com a RIR real ou simulada, quanto um ruído de fundo.
+
