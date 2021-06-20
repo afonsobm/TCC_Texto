@@ -9,3 +9,4 @@ augmentation
 convoluídos
 MUSAN
 convoluído
+subbandas
