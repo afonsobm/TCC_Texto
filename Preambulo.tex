@@ -66,7 +66,7 @@ assistentes pessoais em \textit{smartphones}, automação residencial, até aute
 
 Uma das características mais importantes neste tema é a detecção da Resposta ao Impulso de ambientes acústicos (RIR), que representa
 o modelo acústico do ambiente. A RIR é usada no processamento de áudio para identificação e reconhecimento de fontes sonoras em campo
-distante, que é formada, no caso de reconhecimento de voz, por uma amostra de voz anecoica convoluída com a RIR, acrescida de um ruído. 
+distante, que é formada, no caso do tema de reconhecimento de voz, por uma amostra de voz anecoica convoluída com a RIR, acrescida de um ruído. 
 
 Um dos desafios no reconhecimento de voz é a estimação da RIR em um sinal de voz em campo distante.
 Além das técnicas tradicionais de processamento de sinais, diversas soluções de \textit{deep learning} foram propostas para a estimação da RIR,
@@ -80,8 +80,7 @@ com as RIRSMs e adicionando ruídos à voz reverberada.
 Ao final do trabalho, são exibidos exemplos de AVCDs geradas pelo algoritmo proposto, analisando se os dados gerados são válidos para uso 
 em treinamento de redes neurais.
 
-
-\bigbreak
+\paragraph{}
 \noindent Palavras-Chave: Resposta ao Impulso de sala, \textit{data augmentation}, \textit{deep learning}, reconhecimento de voz.
 
 \pagebreak
@@ -93,7 +92,25 @@ em treinamento de redes neurais.
 \end{center}
       \vspace{0.5cm}
 
-\paragraph{}Insert your abstract here. Insert your abstract here. Insert your abstract here. Insert your abstract here. Insert your abstract here.
+Speech recognition is a very relevant topic in the present days due to it's vast technological usage on modern society
+from personal assistants on smartphones, residential automated systems to voice authentication for security applications.
+
+One of the most important characteristics on this topic is the Room Impulse Response detection (RIR), which represents the
+acoustic model of the room. The RIR is used on signal processing to identify and recognize far-field audio sources,
+which for the speech recognition topic, is the anechoic voice sample convolved with the RIR plus noise signal.
+
+One of the challenges when it comes to speech recognition is to estimate the RIR in a far-field voice sample.
+Beyond the traditional signal processing algorithms, many deep learning solutions are proposed for the RIR estimation,
+however they end up with limited results due to the lack of variety e quantity of RIR databases available for training.
+
+In this context, the main objective of this project is to develop an algorithm using data augmentation techniques that will
+generate far-field voice samples, therefore building a database for deep learning training.
+The algorithm is composed of two segments: the first modifies the real RIRs characteristics of direct-to-reverberant ratio (DRR) and
+the reverberation time (T60) generating simulated RIRs (RIRSM); the second generates far-field voice samples using the previously created 
+RIRSMs, anechoic voice samples and noise signals.
+At the end of this work, examples of the generated far-field voice samples by the algorithm are shown and they are analysed to see
+if they are valid to be used in neural network training.
+
 \paragraph{}
 \noindent Key-words: Room Impulse Response, data augmentation, deep learning, voice recognition.
 
