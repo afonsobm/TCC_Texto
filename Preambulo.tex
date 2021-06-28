@@ -61,9 +61,28 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 \end{center}
       \vspace{0.5cm}
 
-\paragraph{}Inserir o resumo do seu trabalho aqui. O objetivo é apresentar ao pretenso leitor do seu Projeto Final uma descrição genérica do seu trabalho. Você também deve tentar despertar no leitor o interesse pelo conteúdo deste documento.
-\paragraph{}
-\noindent Palavras-Chave: trabalho, resumo, interesse, projeto final.
+O tema de reconhecimento de voz se torna cada vez mais relevante graças ao seu amplo uso tecnológico na sociedade, desde 
+assistentes pessoais em \textit{smartphones}, automação residencial, até autenticação por voz para aplicações de segurança.
+
+Uma das características mais importantes neste tema é a detecção da Resposta ao Impulso de ambientes acústicos (RIR), que representa
+o modelo acústico do ambiente. A RIR é usada no processamento de áudio para identificação e reconhecimento de fontes sonoras em campo
+distante, que é formada, no caso de reconhecimento de voz, por uma amostra de voz anecoica convoluída com a RIR, acrescida de um ruído. 
+
+Um dos desafios no reconhecimento de voz é a estimação da RIR em um sinal de voz em campo distante.
+Além das técnicas tradicionais de processamento de sinais, diversas soluções de \textit{deep learning} foram propostas para a estimação da RIR,
+contudo estas acabam sendo limitadas devido à falta de variedade e quantidade de bases de RIRs disponíveis para treinamento de redes neurais.
+
+Neste contexto, o objetivo deste projeto é de desenvolver um algoritmo, usando técnicas de \textit{data augmentation}, que gera amostras de voz
+em campo distante (AVCD), construindo assim uma base de dados para uso em treinamentos de soluções de \textit{deep learning}. 
+O algoritmo é composto por dois segmentos de \textit{data augmentation}: o primeiro modifica as características de razão direto-reverberante (DRR)
+e tempo de reverberação (T60), partindo de RIRs reais, gerando RIRs simuladas (RIRSM); o segundo gera AVCDs, convoluindo amostras de voz anecoicas
+com as RIRSMs e adicionando ruídos à voz reverberada. 
+Ao final do trabalho, são exibidos exemplos de AVCDs geradas pelo algoritmo proposto, analisando se os dados gerados são válidos para uso 
+em treinamento de redes neurais.
+
+
+\bigbreak
+\noindent Palavras-Chave: Resposta ao Impulso de sala, \textit{data augmentation}, \textit{deep learning}, reconhecimento de voz.
 
 \pagebreak
 
@@ -76,7 +95,7 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 
 \paragraph{}Insert your abstract here. Insert your abstract here. Insert your abstract here. Insert your abstract here. Insert your abstract here.
 \paragraph{}
-\noindent Key-words: word, word, word.
+\noindent Key-words: Room Impulse Response, data augmentation, deep learning, voice recognition.
 
 \pagebreak
 
