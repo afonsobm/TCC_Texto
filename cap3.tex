@@ -85,12 +85,19 @@ Uma ressalva deste procedimento é que se deve atentar para não escolher um $DR
 pois após a transformação do $h_e(t)$ para $h'_e(t)$, dependendo do valor de $\alpha$, é possível incidir em um caso onde
 $max(h'_e(t)) < max(h_l(t))$, tornando a RIRSM impraticável.
 
-% ### TODO: [FIGURA] Exemplo de RIR antes/depois de fazer DA DRR.
-% ### TODO: [FIGURA] Exemplo de RIR com o problema do corte.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{ir-early.png}
+    \caption{Um exemplo de $h(t)$ com $h_e(t)$, onde é feita a DA do DRR, marcado em vermelho.}
+    \label{fig:ir-early}
+\end{figure} 
 
-\noindent
-\textcolor{red}{\textbf{[FIGURA]} Exemplo de RIR antes e depois de fazer \textit{Data Augmentation} de DRR} \\
-\textcolor{red}{\textbf{[FIGURA]} Exemplo de RIR mostrando o problema de intensidade resposta atrasada maior que o da adiantada}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{drr-da.png}
+    \caption{Um exemplo de $h_e(t)$ com e sem DA de DRR, original em azul ($DRR=-4,5$) e com DA em vermelho ($DRR=4$).}
+    \label{fig:drr-da}
+\end{figure} 
 
 
 \section{Tempo de Reverberação (T60)}
@@ -148,7 +155,16 @@ Por fim, a RIRSM completa, $h'(t)$, pode ser representada pela equação
     .
 \end{equation}
 
-% ### TODO: [FIGURA] DA de T60 exibida aqui
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{ir-late.png}
+    \caption{Um exemplo de $h(t)$ com $h_l(t)$, onde é feita a DA do T60, marcado em vermelho.}
+    \label{fig:ir-late}
+\end{figure} 
 
-\noindent
-\textcolor{red}{\textbf{[FIGURA]} Exemplo de RIR antes e depois de fazer \textit{Data Augmentation} de T60} 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.3]{t60-da.png}
+    \caption{Um exemplo de um trecho ao final de $h_l(t)$ com e sem DA de T60, original em azul ($T60=1,38$) e com DA em vermelho ($T60=2,6$).}
+    \label{fig:t60-da}
+\end{figure} 
