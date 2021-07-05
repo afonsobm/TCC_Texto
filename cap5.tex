@@ -1,0 +1,137 @@
+Este capítulo apresenta as bases de dados que serão usadas para gerar os resultados experimentais.
+Para a aplicação da metodologia deste trabalho, é necessário três fontes de dados:
+
+\begin{itemize}
+    \item base de dados com amostras de voz anecoicas para convolução com as RIRSMs,
+    \item base de dados com RIRs reais para o primeiro nível de \textit{Data Augmentation}, gerando as RIRSMs,
+    \item base de dados com SRPs e SRFs para o segundo nível de \textit{Data Augmentation}, gerando as AVCDs.
+\end{itemize}
+
+
+\section{Base de amostras de voz anecoicas}
+
+A base de AVAs usada consiste na leitura de textos em inglês por 4 pessoas diferentes (duas vozes masculinas e duas femininas).
+Os arquivos de áudio são disponibilizados em formato WAV, com frequência de amostragem de 16 KHz, e cada gravação tem duração
+em torno de 5 a 6 segundos; no caso deste trabalho, foram concatenadas duas frases por pessoa na mesma 
+gravação devido ao tempo de duração dos ruídos pontuais que serão adicionados para a geração de AVCDs.
+
+A tabela \ref{tbl:voice} descreve as gravações usadas neste projeto.
+
+\begin{table} [H]
+    \centering
+    \caption{Descrição dos textos pronunciados por locutor.}
+    \label{tbl:voice}
+    \begin{tabularx}{\textwidth}{l|c|p{9cm}} 
+        
+        \multicolumn{1}{c|}{\textbf{Nome}} & \multicolumn{1}{|c|}{\textbf{Código}} & \multicolumn{1}{|c}{\textbf{Texto}} \\
+        %\textbf{Nome} & \textbf{Código} & \textbf{Texto} \\
+        \hline 
+
+        Homen 1 - Texto 1 & H1-T1 & \textit{This food is too spicy he complained. Young man can be very arrogant and rude.} \\
+        Homen 1 - Texto 2 & H1-T2 & \textit{So Marcus owned a big shipping company. Their eyes met across the table.} \\
+        Homen 2 - Texto 1 & H2-T1 & \textit{Time is running out for the scientists. If you knew Julie like I know Julie.} \\
+        Homen 2 - Texto 2 & H2-T2 & \textit{Your new dress is breathtaking darling. Her first book was published last year.} \\
+        Mulher 1 - Texto 1 & M1-T1 & \textit{Among them are canvases from a young artist. Building from the ground up is very costly.} \\
+        Mulher 1 - Texto 2 & M1-T2 & \textit{Next year we will see several more exibitions. The number of works on view will increase.} \\
+        Mulher 2 - Texto 1 & M2-T1 & \textit{An enourmous quake rocked the island. Eventually he hopes to solve all the problems.} \\
+        Mulher 2 - Texto 2 & M2-T2 & \textit{Eventually he hopes to solve all the problems. Faulty installation can be blamed for this.} \\
+        
+    \end{tabularx}
+\end{table}
+
+\section{Base de RIRs - Aachen Impulse Response database (AIR)}
+
+A base de AIR \cite{AIR_Database} é um conjunto de respostas ao impulso sonoras que foram medidas em diversas salas.
+O objetivo dessa base é de fornecer dados para estudos de algoritmos de processamento de sinais para ambientes reverberados.
+
+Ela é composta primariamente por RIRs binaurais medidas com ou sem uma cabeça falsa de manequim em locais com diferentes
+propriedades acústicas; é importante frisar também que a base possui gravações com diferentes distâncias entre a fonte sonora
+e os microfones para a mesma sala, gerando outros tempos de reverberação.
+A base também possui gravações em diferentes ângulos azimutais com o objetivo de auxiliar algoritmos de detecção
+de direção da fonte sonora; para o escopo deste projeto, tais RIRs não serão usadas. 
+
+\begin{table} [H]
+    \centering
+    \caption{Configurações de RIRs disponíveis na AIR.}
+    \label{tbl:rir}
+    \begin{tabularx}{\textwidth}{l|c|c|c|l}
+        
+        \multicolumn{1}{c|}{\textbf{Sala}} & \multicolumn{1}{c|}{\textbf{Descrição}} & \multicolumn{1}{|c|}{\textbf{Canais}} &
+        \multicolumn{1}{|c|}{\textbf{Cabeça}} & \multicolumn{1}{c}{\textbf{Distâncias}} \\
+        %\textbf{Sala} & \textbf{Descrição} & \textbf{Canais} & \textbf{Cabeça} & \textbf{Distâncias (m)} \\
+        \hline 
+
+        Booth & cabine de estúdio & E/D & S/N & 0,5/1/1,5 \\
+        Office & escritório comercial & E/D & S/N & 1/2/3 \\
+        Meeting & sala de reuniões & E/D & S/N & 1,45/1,7/1,9/2,25/2,8 \\
+        Lecture & sala de aula & E/D & S/N & 2,25/4/5,56/7,1/8,68/10,2 \\
+        Stairway & escadaria aberta & E/D & S/N & 1/2/3 \\
+        Aula Carolina & igreja de área 570m² & E/D & S/N & 1/2/3/5/15/20 
+
+    \end{tabularx}
+\end{table}
+
+Os ambientes em que foram feitas as gravações de RIRs e suas respectivas configurações são definidos na tabela \ref{tbl:rir}.
+Todos os ambientes usados possuem gravações com ambos os canais esquerdo e direito (E/D) e com configuração com ou sem a cabeça
+falsa. As RIRs foram salvas como vetores binários de precisão dupla de ponto flutuante (formato MAT, que pode ser importado
+via MATLAB\textregistered).
+
+\section{Base de ruídos - MUSAN}
+
+A base de MUSAN (\textit{A Music, Speech, and Noise Corpus}) \cite{noiseLib} consiste em um conjunto de músicas de diversos gêneros,
+amostras de voz de doze línguas e uma variedade de ruídos técnicos e não-técnicos.
+Ela foi criada primariamente para auxiliar no treinamento de modelos voltados para detecção de atividade de voz, contudo ela 
+é usada também para teste de algoritmos processamento de sinais na área de áudio, por exemplo, reconhecimento de voz e orador.
+Uma das vantagens dessa base é o fato dela ser uma compilação de áudios com fontes em domínios públicos, facilitando a 
+distribuição dos áudios para uso da comunidade científica.
+
+No escopo deste projeto, será usado somente a seção de ruídos da base, composta por seis horas de áudio no total.
+A seção de ruídos é composta por sons técnicos de curta duração, que são usados como SRPs no segundo processo de 
+\textit{Data Augmentation}, e por sons de ambiente, usados como SRFs no mesmo processo.
+
+\begin{table} [H]
+    \centering
+    \caption{Descrição dos tipos de ruídos pontuais usados da base MUSAN.}
+    \label{tbl:noise}
+    \begin{tabular}{c|l}
+
+        \multicolumn{1}{c|}{\textbf{Código}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
+        %\textbf{Código} & \textbf{Descrição} \\
+        \hline 
+
+        RP-1 & miado de gato \\
+        RP-2 & madeira sendo lixada \\
+        RP-3 & buzina de automóvel \\
+        RP-4 & porta abrindo \\
+        RP-5 & grampeador \\
+        RP-6 & teclado de forno de microondas \\
+        RP-7 & \textit{zipper} sendo fechado \\
+        RP-8 & latido de cão \\
+        RP-9 & batendo em uma porta \\
+        RP-10 & espirro \\
+        RP-11 & campainha \\
+        RP-12 & vibrador de celular \\
+
+    \end{tabular}
+\end{table}
+
+\begin{table} [H]
+    \centering
+    \caption{Descrição dos tipos de ruídos de fundo usados da base MUSAN.}
+    \label{tbl:noise-bg}
+    \begin{tabular}{c|l}
+
+        \multicolumn{1}{c|}{\textbf{Código}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
+        %\textbf{Código} & \textbf{Descrição} \\
+        \hline 
+
+        RF-1 & avião decolando em aeroporto \\
+        RF-2 & sala de máquinas \\
+        RF-3 & estática \\
+        RF-4 & sons de floresta \\
+
+    \end{tabular}
+\end{table}
+
+As tabelas \ref{tbl:noise} e \ref{tbl:noise-bg} indicam os ruídos separados da base para gerar AVCDs.
+Os arquivos de áudio são disponibilizados em formato WAV, com frequência de amostragem de 16 KHz. 

@@ -1,0 +1,116 @@
+\documentclass[a4paper,12pt,oneside,openany]{book}	
+\input{TesePack}
+
+\begin{document}
+
+\frontmatter
+\thispagestyle{empty}
+
+\input{Capa}
+
+\pagebreak            
+
+\input{Preambulo}
+
+% Table of Contents
+% ---------------------------------------------------------------
+\tableofcontents
+% ---------------------------------------------------------------
+% Lista de figuras
+% ---------------------------------------------------------------
+%\cleardoublepage
+%\addcontentsline{toc}{chapter}{Lista de Figuras}
+\listoffigures
+% ---------------------------------------------------------------
+% Lista de Tabelas
+% ---------------------------------------------------------------
+%\cleardoublepage
+%\addcontentsline{toc}{chapter}{Lista de Tabelas}
+\listoftables
+
+\mainmatter
+\cleardoublepage
+% ---------------------------------------------------------------
+% Chapter 1 - Introdução
+% ---------------------------------------------------------------
+\chapter{Introdução}
+\label{cap1}
+\input{cap1}
+
+% ---------------------------------------------------------------
+% Chapter 2 - Análise de Fontes Sonoras e seus Desafios
+% ---------------------------------------------------------------
+\chapter{Análise de Fontes Sonoras e seus Desafios}
+\label{cap2}
+\input{cap2}
+
+% ---------------------------------------------------------------
+% Chapter 3 - Data Augmentation da Resposta ao Impulso do Ambiente
+% ---------------------------------------------------------------
+\chapter{\textit{Data Augmentation} da Resposta ao Impulso do Ambiente}
+\label{cap3}
+\input{cap3}
+
+% ---------------------------------------------------------------
+% Chapter 4 - Desenvolvimento de Sinais de Voz Reverberadas Simuladas com Ruídos
+% ---------------------------------------------------------------
+\chapter{Desenvolvimento de Sinais de Voz Reverberadas Simuladas com Ruídos}
+\label{cap4}
+\input{cap4}
+
+% ---------------------------------------------------------------
+% Chapter 5 - Bases de Dados
+% ---------------------------------------------------------------
+\chapter{Bases de Dados}
+\label{cap5}
+\input{cap5}
+
+% ---------------------------------------------------------------
+% Chapter 6 - Resultados Experimentais
+% ---------------------------------------------------------------
+\chapter{Resultados Experimentais}
+\label{cap6}
+\input{cap6}
+
+% ---------------------------------------------------------------
+% Chapter 7 - Conclusões
+% ---------------------------------------------------------------
+\chapter{Conclusões}
+\label{cap7}
+\input{cap7}
+
+% ---------------------------------------------------------------
+% Bibliografia
+% ---------------------------------------------------------------
+\normalsize
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Bibliografia}
+\bibliographystyle{coppe} 
+\bibliography{biblio}
+
+% ---------------------------------------------------------------
+% Apêndices 
+% ---------------------------------------------------------------
+   \appendix
+   % ---------------------------------------------------------------
+   % Apêndice A
+   % ---------------------------------------------------------------
+   \chapter{Gráficos dos Resultados}
+   \label{ApendiceA}
+   \input{ApendiceA}
+   % ---------------------------------------------------------------
+   % Apêndice B
+   % ---------------------------------------------------------------
+   \chapter{Código Fonte}
+   \label{ApendiceB}
+   \input{ApendiceB}
+   % % ---------------------------------------------------------------
+   % % Apêndice C
+   % % ---------------------------------------------------------------
+   % \chapter{O que é um anexo?}
+   % \label{ApendiceC}
+   % \input{ApendiceC}   
+
+\backmatter
+
+\end{document}

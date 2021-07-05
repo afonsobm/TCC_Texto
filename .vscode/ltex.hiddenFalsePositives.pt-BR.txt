@@ -1,0 +1,4 @@
+{"rule":"HUNSPELL_RULE","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"PT_BARBARISMS_REPLACE","sentence":"^\\QReverberação causa degradação do sinal de voz, levando à perda de clareza na comunicação \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q e à redução da performance de sistemas de reconhecimento de voz \\E(?:Dummy|Ina|Jimmy-)[0-9]+$"}
+{"rule":"PT_BARBARISMS_REPLACE","sentence":"^\\QReverberação causa degradação do sinal de voz, levando à perda de clareza na comunicação \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q e à redução da performance de sistemas de reconhecimento de voz \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"ACTUAL","sentence":"^\\QEste projeto é focado no estudo de uma forma de gerar RIRs devido à sua importância para diversas aplicações usadas atualmente na indústria.\\E$"}
