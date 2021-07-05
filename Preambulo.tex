@@ -53,7 +53,7 @@ Rio de Janeiro - RJ      CEP 21949-900\\
 Agradeço, em primeiro lugar, à Deus que guiou todos os meus passos nessa jornada acadêmica e continua a guiar os caminhos da minha vida.
 Sem Ele, não seria capaz de terminar este projeto e não chegaria nos patamares onde estou. A Ele a glória.
 
-Gostaria de agradecer também aos meus pais, em especial à minha mãe, que graças ao seu infinito empenho, dedicação, amor e carinho que me impulsionavam
+Gostaria de agradecer também aos meus pais, em especial à minha mãe, que graças ao seu infinito empenho, dedicação, amor e carinho0 que me impulsionavam
 a cada dia, estou hoje concluindo esta etapa de minha vida.
 
 Não menos importante, agradeço também à minha orientadora, Mariane Rembold Petraglia, que dedicou seu tempo para que eu pudesse me tornar um profissional
@@ -72,21 +72,23 @@ o resto da minha vida.
       \vspace{0.5cm}
 
 O tema de reconhecimento de voz se torna cada vez mais relevante graças ao seu amplo uso tecnológico na sociedade, desde 
-assistentes pessoais em \textit{smartphones}, automação residencial, até autenticação por voz para aplicações de segurança.
+assistentes pessoais em \textit{smartphones} e automação residencial, até autenticação por voz para aplicações de segurança.
 
-Uma das características mais importantes neste tema é a detecção da Resposta ao Impulso de ambientes acústicos (RIR), que representa
+Uma das características mais importantes neste tema é a detecção da Resposta ao Impulso de Salas (RIR), que representa
 o modelo acústico do ambiente. A RIR é usada no processamento de áudio para identificação e reconhecimento de fontes sonoras em campo
-distante, que é formada, no caso do tema de reconhecimento de voz, por uma amostra de voz anecoica convoluída com a RIR, acrescida de um ruído. 
+distante, que é formada, no caso do tema de reconhecimento de voz, por uma amostra de voz anecóica convoluída com a RIR, acrescida de um ruído,
+que pode ser pontual ou disperso.
 
 Um dos desafios no reconhecimento de voz é a estimação da RIR em um sinal de voz em campo distante.
 Além das técnicas tradicionais de processamento de sinais, diversas soluções de \textit{deep learning} foram propostas para a estimação da RIR,
-contudo estas acabam sendo limitadas devido à falta de variedade e quantidade de bases de RIRs disponíveis para treinamento de redes neurais.
+contudo estas acabam sendo limitadas devido à falta de variedade e quantidade de bases de RIRs medidas
+disponíveis para treinamento de redes neurais.
 
 Neste contexto, o objetivo deste projeto é de desenvolver um algoritmo, usando técnicas de \textit{data augmentation}, que gera amostras de voz
 em campo distante (AVCD), construindo assim uma base de dados para uso em treinamentos de soluções de \textit{deep learning}. 
 O algoritmo é composto por dois segmentos de \textit{data augmentation}: o primeiro modifica as características de razão direto-reverberante (DRR)
-e tempo de reverberação (T60), partindo de RIRs reais, gerando RIRs simuladas (RIRSM); o segundo gera AVCDs, convoluindo amostras de voz anecoicas
-com as RIRSMs e adicionando ruídos à voz reverberada. 
+e tempo de reverberação (T60) do sinal acústico, partindo de RIRs reais, gerando RIRs simuladas (RIRSM);
+o segundo gera AVCDs, convoluindo amostras de voz anecóicas com as RIRSMs e adicionando ruídos à voz reverberada. 
 Ao final do trabalho, são exibidos exemplos de AVCDs geradas pelo algoritmo proposto, analisando se os dados gerados são válidos para uso 
 em treinamento de redes neurais.
 
@@ -102,10 +104,10 @@ em treinamento de redes neurais.
 \end{center}
       \vspace{0.5cm}
 
-Speech recognition is a very relevant topic in the present days due to it's vast technological usage on modern society
-from personal assistants on smartphones, residential automated systems to voice authentication for security applications.
+Speech recognition is a very relevant topic in the present days due to its vast technological usage on modern society
+from personal assistants on smartphones and residential automated systems, to voice authentication for security applications.
 
-One of the most important characteristics on this topic is the Room Impulse Response detection (RIR), which represents the
+One of the most important characteristics on this topic is the Room Impulse Response (RIR) detection, which represents the
 acoustic model of the room. The RIR is used on signal processing to identify and recognize far-field audio sources,
 which for the speech recognition topic, is the anechoic voice sample convolved with the RIR plus noise signal.
 
@@ -116,8 +118,8 @@ however they end up with limited results due to the lack of variety e quantity o
 In this context, the main objective of this project is to develop an algorithm using data augmentation techniques that will
 generate far-field voice samples, therefore building a database for deep learning training.
 The algorithm is composed of two segments: the first modifies the real RIRs characteristics of direct-to-reverberant ratio (DRR) and
-the reverberation time (T60) generating simulated RIRs (RIRSM); the second generates far-field voice samples using the previously created 
-RIRSMs, anechoic voice samples and noise signals.
+the reverberation time (T60) of the acoustic signal generating simulated RIRs (RIRSM);
+the second generates far-field voice samples using the previously created RIRSMs, anechoic voice samples and noise signals.
 At the end of this work, examples of the generated far-field voice samples by the algorithm are shown and they are analysed to see
 if they are valid to be used in neural network training.
 
@@ -133,25 +135,25 @@ if they are valid to be used in neural network training.
 \end{center}
       \vspace{0.5cm}
 
-\paragraph{}AIR - Aachen Impulse Response database
-\paragraph{}AVA - Amostra de voz anecoica
+\paragraph{}AIR - Aachen Impulse Response
+\paragraph{}AVA - Amostra de voz anecóica
 \paragraph{}AVCD - Amostra de voz em campo-distante
 \paragraph{}AVR - Amostra de voz reverberada
 \paragraph{}DA - \textit{Data Augmentation}
 \paragraph{}DL - \textit{Deep Learning}
 \paragraph{}DRR - Razão Direto-Reverberante
-\paragraph{}RIR - Resposta ao Impulso de Ambiente Acústico
+\paragraph{}RIR - Resposta ao Impulso de Salas
 \paragraph{}RIRDA - \textit{Data Augmentation} da Resposta ao Impulso de Ambiente Acústico 
 \paragraph{}RIRO - Resposta ao Impulso de Ambiente Original
 \paragraph{}RIRSM - Resposta ao Impulso de Ambiente Acústico Simulada
 \paragraph{}SNR - Razão Sinal-Ruído
 \paragraph{}SRF - Sinal de ruído de fundo
 \paragraph{}SRP - Sinal de ruído pontual
-\paragraph{}T20 - Tempo de Reverberação (queda de 20 DB)
-\paragraph{}T30 - Tempo de Reverberação (queda de 30 DB)
-\paragraph{}T60 - Tempo de Reverberação (queda de 60 DB)
+\paragraph{}T20 - Tempo de Reverberação (queda de 20 dB)
+\paragraph{}T30 - Tempo de Reverberação (queda de 30 dB)
+\paragraph{}T60 - Tempo de Reverberação (queda de 60 dB)
 \paragraph{}UFRJ - Universidade Federal do Rio de Janeiro 
-\paragraph{}VA - Voz anecoica
+\paragraph{}VA - Voz anecóica
 \paragraph{}VR - Voz reverberada
 
 

@@ -6,25 +6,25 @@ algumas aplicações onde este é usado, além de apresentar os desafios relacio
 Dentre os diversos tópicos na grande área de estudo de sinais de áudio, destaca-se a detecção e reconhecimento de fontes acústicas no espaço físico.
 Um caso específico deste tópico é sobre sinais de voz gravados em ambientes fechados, onde um ou mais microfones são posicionados na sala afastados
 da fonte sonora, normalmente uma pessoa que performa a gravação.
-Estes sinais são corrompidos pela reverberação do ambiente, que surge a partir da sobreposição da onda sonora anecoica que chega ao microfone com a 
+Estes sinais são corrompidos pela reverberação do ambiente, que surge a partir da sobreposição da onda sonora anecóia que chega ao microfone com a 
 onda sonora atenuada e refletida nas paredes do ambiente fechado. 
 
 \begin{figure} [H]
     \begin{subfigure}{.5\textwidth}
         \centering
         \includegraphics[scale=0.4]{camara_anecoica.png}
-        \caption{Sala anecoica}    
+        \caption{Sala anecóia}    
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
         \centering
         \includegraphics[scale=0.4]{camara_reverb.png}    
         \caption{Sala reverberante}    
     \end{subfigure}
-    \caption{Representação de uma sala anecoica e reverberante}
+    \caption{Representação de uma sala anecóia e reverberante}
     \label{fig:Rooms}
 \end{figure}
 
-Observa-se na figura \ref{fig:Rooms} uma representação de uma sala anecoica, onde o único áudio capturado pelo microfone é a onda sonora direta
+Observa-se na figura \ref{fig:Rooms} uma representação de uma sala anecóia, onde o único áudio capturado pelo microfone é a onda sonora direta
 enviada pela fonte, sem nenhuma reflexão do ambiente; já na sala reverberante, nota-se que o áudio capturado será uma combinação da onda sonora direta
 com as refletidas nas paredes. 
 Este sinal reverberado pode ser modelado da seguinte forma:
@@ -35,7 +35,7 @@ Este sinal reverberado pode ser modelado da seguinte forma:
 
 % ### TODO: [FIGURA] exemplificando voz reverberada e figura mostrando o que é RIR
 
-Onde $Y(t)$ representa o sinal de voz em campo distante, $s(t)$ o sinal de voz anecoico, $h(t)$ a RIR e $n(t)$ o sinal de ruído que pode
+Onde $Y(t)$ representa o sinal de voz em campo distante, $s(t)$ o sinal de voz anecóio, $h(t)$ a RIR e $n(t)$ o sinal de ruído que pode
 estar presente no ambiente.
 Dessa forma, é possível inferir que a RIR representa o modelo acústico de uma sala, para uma determinada combinação de fatores do ambiente, incluindo: 
 temperatura e umidade relativa do ar, pressão atmosférica, material das paredes e posicionamento de móveis.
@@ -81,7 +81,7 @@ No caso de bases de dados que envolvem RIRs, o motivo de não existir uma alta v
 de realizar a gravação dos áudios \cite{Recording_RIR_2}.
 Para gerar o impulso sonoro, é necessário de uma fonte sonora (por exemplo, um alto-falante) capaz de realizar uma varredura de senos com o mínimo de distorção
 possível, ou usar um equipamento para iniciar um som de decaimento rápido e de alta intensidade (por exemplo, um balão estourando) \cite{Recording_RIR}.
-A gravação do impulso requer microfones que estejam dentro de uma câmara anecoica, capacitando assim o microfone de gravar apenas o som vindo direto
+A gravação do impulso requer microfones que estejam dentro de uma câmara anecóia, capacitando assim o microfone de gravar apenas o som vindo direto
 da fonte sonora, e não as ondas que são refletidas nas paredes.
 Não menos importante, para aumentar a quantidade de amostras na base, deve-se não só gravar o áudio não só em diferentes posições no ambiente
 e distâncias da fonte-microfone, como também preparar estes mesmos procedimentos em ambientes diferentes, levando ao transporte de diversos equipamentos

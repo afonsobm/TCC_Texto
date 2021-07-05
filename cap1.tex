@@ -1,32 +1,33 @@
-Neste capítulo, será introduzido os principais tópicos do projeto, além de mostrar sua relevância para o escopo da engenharia moderna
-e as metodologias que são usadas para alcançar seus objetivos. Ao final é descrito a estrutura organizacional do texto.
+Neste capítulo, serão introduzidos os principais tópicos do projeto, além de mostrar sua relevância para o escopo da engenharia moderna
+e as metodologias que são usadas para alcançar seus objetivos. Ao final é descrita a estrutura organizacional do texto.
 
 \section{Tema}
 
-O tema do trabalho é sobre o estudo de uma forma de simular Respostas ao Impulso de Ambientes Acústicos (RIR) com parametrizações diferentes a partir de amostras 
+O tema do trabalho é sobre o estudo de uma forma de simular Respostas ao Impulso de Salas (RIR) com parametrizações diferentes a partir de amostras 
 de RIR gravadas em ambientes reais, e ainda usar a RIR para gerar amostras de áudio em locais simulados a partir de gravações de voz reais.
 
 \section{Delimitação}
 
-O estudo é focado em inferir uma técnica de reforço de dados tanto em amostras reais de RIR quanto nas gravações de voz. Este trabalho está delimitado em apenas 
-modificar amostras reais de áudio, e não gerar amostras simuladas sem uma gravação de base.
+O estudo é focado em inferir uma técnica de reforço de dados tanto em amostras reais de RIR quanto nas gravações de voz. 
+Este trabalho está delimitado em apenas modificar amostras reais de áudio, e não gerar amostras simuladas sem uma gravação de base
+, e modificar RIRs medidas, sem a utilização de programas de simulação acústica de salas.
 
 \section{Justificativa}
 
 Com o avanço das tecnologias de automação residencial, assistentes pessoais nos \textit{smartphones} e comunicação \textit{online}, o estudo de técnicas de
-processamento de áudio (no caso específico deste trabalho, relacionados a voz), tornou-se mais relevante para a sociedade.
-Uma das características mais importantes a ser detectada no processamento de áudio é a Resposta ao Impulso de salas, 
+processamento de áudio (no caso específico deste trabalho, relacionados à voz), tornou-se mais relevante para a sociedade.
+Uma das características mais importantes a ser detectada no processamento de áudio é a Resposta ao Impulso de Salas, 
 que representa o modelo acústico do ambiente, pois através desta é possível extrair informações pertinentes do local em que o áudio foi gravado
 e também detectar a posição de fontes sonoras e as isolar para reconhecimento.
 No âmbito da área de reconhecimento de voz, a fala reverberante, ou seja, o sinal de fala combinado com o modelo acústico do ambiente
-é um dos desafios encontrados para a detecção da voz, tornando a identificação do RIR de vital importância para o reconhecimento de fala \cite{FAR-FIELD_ASR}.
+é um dos desafios encontrados para a detecção da voz, tornando a identificação da RIR de vital importância para o reconhecimento de fala \cite{FAR-FIELD_ASR}.
 
 Junto a isso, houve avanços no âmbito do aprendizado de máquina, fornecendo alternativas para os métodos tradicionais
 de processamento de áudio \cite{ML_Speech_Rec}.
 Modelos de arquitetura de redes neurais necessitam de um grande volume de dados para que sejam treinados e aprimorados, e um dos mais recentes
 desafios nessa área é o fato das bases de RIR não serem extensas, conforme esclarecidas no artigo \cite{Estimation_RT_DRR},
-pois realizar uma grande quantidade de gravações de áudio é uma tarefa de alto custo tanto financeiro e temporal, necessitando de equipamento especializado
-e diversos locais com características de modelo sonoro diferentes e pessoas diversas para amostras de voz.
+pois realizar uma grande quantidade de gravações de áudio é uma tarefa de alto custo tanto financeiro quanto de tempo, necessitando de equipamento especializado
+e diversos locais com características de modelo sonoro diferentes e pessoas diversas para gerar grande diversidade de amostras de voz.
 
 
 \section{Objetivos}
@@ -46,24 +47,24 @@ Dessa forma, têm-se como objetivos específicos:
 \section{Metodologia}
 
 Um sinal de voz gravado em um ambiente pode ser interpretado como a junção de três partes: uma amostra de voz pura, sem nenhum fator externo
-ou reverberação envolvido, convoluída com a Resposta ao Impulso da sala (RIR) onde ocorre a gravação, somada a um sinal de ruído, podendo este 
+ou reverberação envolvido, convoluída com a RIR onde ocorre a gravação, somada a um sinal de ruído, podendo este 
 ser pontual ou um ruído de ambiente. A RIR representa um modelo acústico do ambiente, que define como um receptor acústico irá receber caso o áudio
-seja gerado e percebido de dentro deste ambiente. Uma definição de Resposta ao Impulso é a de uma função que registra a pressão sonora temporalmente
+seja gerado e percebido de dentro deste ambiente. Uma definição de RIR é a de uma função que registra a pressão sonora temporalmente
 em um ambiente fechado após uma excitação extremamente curta e cheia de energia (impulso de Dirac).
 
-Neste trabalho é proposta uma forma de gerar RIR simuladas partindo de uma RIR real, ou seja, gravando um áudio que representa um impulso em um ambiente
-fechado real, e alterando suas propriedades. Reproduz-se o que foi proposto no artigo de data augmentation para respostas ao impulso para
+Neste trabalho é proposta uma forma de gerar RIRs simuladas partindo de uma RIR real, ou seja, obtida de medições da resposta ao impulso em um ambiente
+fechado real, e alterando suas propriedades. Reproduz-se o que foi proposto no artigo de \textit{data augmentation} para respostas ao impulso usada na
 estimação do modelo acústico \cite{RIR_Data_Aug}, onde são geradas RIRs simuladas, modificando-se as propriedades de Tempo de Decaimento (T60) e de
-razão entre áudio direto e reverberado (DRR). Através dessas duas propriedades, define-se praticamente todas as RIRs possíveis de serem gravadas
-artificialmente.
+razão entre áudio direto e reverberado (DRR). Através da alteração dessas duas propriedades,
+obtém-se artificialmente uma quantidade representativa de RIRs possíveis de serem gravadas.
 
 Para gerar as amostras de vozes reverberadas que compõe a base de dados, acompanha-se o que é proposto no artigo de estudo de data
-augmentation em vozes reverberadas \cite{Speech_Rec}, onde são convoluídos sinais de voz anecoicos com as RIRs simuladas que foram geradas anteriormente.
-Além disso, é acrescentado a essa sinal de voz reverberado ruídos diversos, que são caracterizados de duas formas: ruídos pontuais e de ambiente.
+augmentation em vozes reverberadas \cite{Speech_Rec}, onde são convoluídos sinais de voz anecóios com as RIRs simuladas que foram geradas anteriormente.
+Além disso, é acrescentado a esse sinal de voz reverberado ruídos diversos, que são caracterizados de duas formas: ruídos pontuais e de ambiente.
 Os ruídos pontuais são amostras de áudio curtas que podem ser introduzidos em qualquer momento da fala; já os ruídos de ambiente são sons constantemente
-presentes ao fundo da gravação para simular um ambiente externo. Os ruídos foram extraídos da biblioteca MUSAN \cite{noiseLib}.
+presentes ao fundo da gravação para simular um ambiente externo ruidoso. Os ruídos foram extraídos da biblioteca MUSAN \cite{noiseLib}.
 
-Através desses dois passos, são gerados vários sinais de vozes reverberados artificialmente. A simulação da RIR tem por objetivo colocar
+Através desses dois passos, são gerados vários sinais de voz reverberados artificialmente. A simulação da RIR tem por objetivo colocar
 a amostra de voz em vários ambientes fechados, e a inclusão de ruídos ajudam drasticamente no treinamento de redes neurais, impedindo que as redes fiquem
 viciadas em características muito específicas da fala durante o treinamento, uma vez que tendem a simular 
 os fatores externos que podem estar envolvidos em uma gravação real.
@@ -71,13 +72,15 @@ os fatores externos que podem estar envolvidos em uma gravação real.
 
 \section{Descrição}
 
-\paragraph{}O capítulo 2 apresenta uma breve análise sobre as principais aplicações do tema e os desafios que este trabalho auxilia na solução.
+\paragraph{}O Capítulo 2 apresenta uma breve análise sobre as principais aplicações do tema e os desafios que este trabalho auxilia na solução.
 
-\paragraph{}No capítulo 3 será descrito a metodologia usada para fazer a \textit{data augmentation} de uma RIR já existente.
+\paragraph{}No Capítulo 3 será descrita a metodologia usada para fazer a \textit{data augmentation} de uma RIR já existente.
 
-\paragraph{}No capítulo 4 explica-se a metodologia usada para gerar sinais de voz aleatórios a partir de RIRs simuladas anteriormente e da adição
+\paragraph{}No Capítulo 4 explica-se a metodologia usada para gerar sinais de voz acústicos a partir de RIRs simuladas anteriormente e da adição
 de ruídos pontuais ou de fundo.
 
-\paragraph{}O capítulo 5 é focado em exibir os resultados obtidos através dos métodos anteriores e demonstrar sua eficácia.
+\paragraph{}O Capítulo 5 apresenta as bases de dados que serão usadas para gerar os resultados experimentais.
 
-\paragraph{}Por fim, o capítulo 6 trata das conclusões que são tiradas sobre este projeto, além de mostrar trabalhos futuros.
+\paragraph{}O Capítulo 6 é focado em exibir os resultados obtidos através dos métodos anteriores e demonstrar sua eficácia.
+
+\paragraph{}Por fim, o Capítulo 7 trata das conclusões que podem ser obtidas sobre este projeto, além de propor trabalhos futuros.
