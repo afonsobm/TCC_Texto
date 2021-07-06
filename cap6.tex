@@ -1,6 +1,7 @@
 Este capítulo descreve os procedimentos e as configurações feitas para a implementação empírica da metodologia deste trabalho.
 Cada seção exibe um conjunto de gráficos relativos ao procedimento implementado para um único exemplo, os gráficos obtidos para todos
 os exemplos se encontram no apêndice \ref{ApendiceA}.
+O código fonte da implementação dos algoritmos propostos se encontra no apêndice \ref{ApendiceB}.
 
 \section{Configuração dos parâmetros}
 
@@ -16,7 +17,7 @@ As faixas de DRR, T60 e SNR usados são exibidos na tabela \ref{tbl:config-param
         \multicolumn{1}{c|}{\textbf{Parâmetro}} & \multicolumn{1}{c}{\textbf{Faixa}} \\
         \hline 
 
-        $DRR_{alvo}$ (db) & $-6 \le DRR_{alvo} \le 18 $ \\
+        $DRR_{alvo}$ (dB) & $-6 \le DRR_{alvo} \le 18 $ \\
         $T60_{alvo}$ (s) & $T60_{org} - 1  \le T60_{alvo} \le T60_{org} + 1$ , onde o limite inferior de $T60_{alvo} = 0.2$ \\
         $SNR_{alvo}$ & $3 \le SNR_{alvo} \le 20 $ \\
 
@@ -24,7 +25,8 @@ As faixas de DRR, T60 e SNR usados são exibidos na tabela \ref{tbl:config-param
 \end{table}
 
 O $DRR_{alvo}$ segue os valores propostos no artigo \cite{RIR_Data_Aug}, já os valores de $T60_{alvo}$, devido à maior faixa de valores 
-de $T60$ das RIRs base de AIR, são limitados a $\pm 1 $ segundo comparado ao valor de $T60_{org}$ da RIR usada durante a passagem do algoritmo.
+de $T60$ das RIRs base de AIR, são limitados a $\pm 1 $ segundo comparado ao valor de $T60_{org}$ da RIR original usada como base para o algoritmo
+de DA implementado.
 
 \section{Resultados}
 
@@ -32,7 +34,7 @@ de $T60$ das RIRs base de AIR, são limitados a $\pm 1 $ segundo comparado ao va
 
 Esta seção observa a eficácia da \textit{Data Augmentation} do DRR; para isso, foram gerados três exemplos de RIRSMs, suas configurações
 são exibidas na tabela \ref{tbl:da-drr}, onde $DRR_{org}$ representa o DRR da RIR original, $DRR_{alvo}$ o valor de DRR desejado pelo usuário,
-$DRR_{res}$ o valor de DRR obtido após DA e $\rho$ é o erro definido da forma $\rho = abs(DRR_{res} - DRR_{alvo})/DRR_{alvo}$.
+$DRR_{res}$ o valor de DRR resultante após DA e $\rho_{DRR}$ é o erro relativo definido da forma $\rho_{DRR} = abs(DRR_{res} - DRR_{alvo})/DRR_{alvo}$.
 
 \begin{table} [H]
     \centering
@@ -56,10 +58,10 @@ $DRR_{res}$ o valor de DRR obtido após DA e $\rho$ é o erro definido da forma 
     \begin{tabular}{c|c|c|c|c}
 
         \textbf{Exemplo} & 
-        \textbf{$DRR_{org}$ (db)} & 
-        \textbf{$DRR_{alvo}$ (db)} &
-        \textbf{$DRR_{res}$ (db)} & 
-        \textbf{$\rho$ (\%)} \\
+        \textbf{$DRR_{org}$ (dB)} & 
+        \textbf{$DRR_{alvo}$ (dB)} &
+        \textbf{$DRR_{res}$ (dB)} & 
+        \textbf{$\rho_{DRR}$ (\%)} \\
         \hline 
 
         D1 & -4,5 & 10 & 10 & 0 \\
@@ -71,7 +73,7 @@ $DRR_{res}$ o valor de DRR obtido após DA e $\rho$ é o erro definido da forma 
 
 
 Nos exemplos gerados, na faixa determinada para o $DRR_{alvo}$, não houve diferença entre o $DRR_{alvo}$ e o $DRR_{res}$.
-É possível observar na figura \ref{fig:rir-aug-d1} que ocorreu um aumento na seção equivalente a $h_e(t)$ comparado à figura \ref{fig:rir-og-d1}
+É possível observar na figura \ref{fig:rir-aug-d1} que ocorreu um aumento na seção equivalente a $h_e(t)$ comparado à da figura \ref{fig:rir-og-d1}
 para o exemplo D1.
 
 \begin{figure} [H]
@@ -102,8 +104,8 @@ já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais 
     \begin{tabular}{c|c|c|c|c}
 
         \textbf{Exemplo} & 
-        \textbf{$DRR_{org}$ (db)} & 
-        \textbf{$DRR_{res}$ (db)} & 
+        \textbf{$DRR_{org}$ (dB)} & 
+        \textbf{$DRR_{res}$ (dB)} & 
         \textbf{Comparação} &
         \textbf{Ordem} \\
         \hline 
@@ -122,7 +124,7 @@ De acordo com a tabela \ref{tbl:drr-exp}, foi possível identificar precisamente
 
 Esta seção observa a eficácia da \textit{Data Augmentation} do T60; para isso, foram gerados três exemplos de RIRSMs, suas configurações
 são exibidas na tabela \ref{tbl:da-t60}, onde $T60_{org}$ representa o T60 da RIR original, $T60_{alvo}$ o valor de T60 desejado pelo usuário,
-$T60_{res}$ o valor de T60 obtido após DA e $\rho$ é o erro definido da forma $\rho = abs(T60_{res} - T60_{alvo})/T60_{alvo}$.
+$T60_{res}$ o valor de T60 resultante após DA e $\rho_{T60}$ é o erro definido da forma $\rho_{T60} = abs(T60_{res} - T60_{alvo})/T60_{alvo}$.
 
 \begin{table} [H]
     \centering
@@ -149,7 +151,7 @@ $T60_{res}$ o valor de T60 obtido após DA e $\rho$ é o erro definido da forma 
         \textbf{$T60_{org}$ (s)} & 
         \textbf{$T60_{alvo}$ (s)} &
         \textbf{$T60_{res}$ (s)} & 
-        \textbf{$\rho$ (\%)} \\
+        \textbf{$\rho_{T60}$ (\%)} \\
         \hline 
 
         T1 & 1,38 & 1,15 & 1,01 & 12.1 \\
@@ -205,14 +207,14 @@ já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais 
     \end{tabular}
 \end{table}
 
-De acordo com a tabela \ref{tbl:t60-exp}, também foi possível identificar precisamente a diferença de variações do T60 para as RIRSMs,
+De acordo com a Tabela \ref{tbl:t60-exp}, também foi possível identificar precisamente a diferença de variações do T60 para as RIRSMs,
 mesmo ocorrendo o $\rho$ elevado para T1, indicando que a DA está ocorrendo, mesmo não atingindo o $T60_{alvo}$.
 
 
 \subsection{\textit{Data Augmentation} de fala em campo distante}
 
-Esta seção observa a eficácia da \textit{Data Augmentation} de AVCDs; para isso, foram gerados cinco exemplos de AVCDs, suas configurações
-são exibidas na tabela \ref{tbl:da-noise}, onde além dos parâmetros explicados nas seções anteriores, é exibido o $SNR_{alvo}$ que representa
+Esta seção observa a eficácia da \textit{Data Augmentation} de AVCDs; para isso, foram gerados cinco exemplos de AVCDs. Suas configurações
+são exibidas na Tabela \ref{tbl:da-noise}, onde além dos parâmetros descritos nas seções anteriores, é exibido o $SNR_{alvo}$ que representa
 a razão SNR desejada entre a AVCD gerada e os SRP e SRF inseridos.
 
 \begin{table} [H]
@@ -282,7 +284,7 @@ com a RIRSM na figura \ref{fig:voice-aug-n2} e a amostra de voz em campo distant
 \end{figure} 
 
 Conforme o esperado, observa-se que a figura \ref{fig:voice-ns-n2} possui um ruído de chão claramente visível comparado à figura \ref{fig:voice-aug-n2}.
-Nota-se também que na faixa de tempo entre 2000 e 4000 há picos sonoros que não são observados na amostra reverberada, estes picos representam o ruído pontual
+Nota-se também que na faixa de tempo entre 2000 e 4000 há picos sonoros que não são observados na amostra reverberada, os quais correspondem o ruído pontual
 introduzido no sinal.
 
 De forma análoga, foi feito outro experimento empírico com o objetivo de medir o nível de ruído do som, ou seja, 

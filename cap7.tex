@@ -1,7 +1,7 @@
 Neste trabalho foi proposto dois algoritmos de \textit{data augmentation} com o objetivo de gerar uma base de dados de amostras de voz 
 em campo distante e RIRSMs para treinamento de redes de \textit{deep learning}.
 Para isso, foi necessário avaliar as principais características e modelos usados nas RIRs para deduzir formas de realizar
-a modificação das mesmas. Este projeto foi baseado nas técnicas propostas por \cite{RIR_Data_Aug} para DA de RIRs e \cite{Speech_Rec}
+a modificação das mesmas. Este projeto foi baseado nas técnicas propostas em \cite{RIR_Data_Aug} para DA de RIRs e em \cite{Speech_Rec}
 para DA de AVCDs.
 
 Ao final do trabalho, foram obtidas diversas RIRSMs e AVCDs geradas através dos algoritmos propostos. 
@@ -19,9 +19,16 @@ Para trabalhos futuros, destaca-se a implementação de uma metodologia de \text
 da RIR que mais se aproxima ao que foi usado em \cite{RIR_Data_Aug}; neste tópico, seria interessante usar outro modelo
 de estimativa do T60 e assim observar se há redução nessa discrepância mencionada.
 
-Outro abordagem de trabalho futuro seria propor um modelo de rede de \textit{deep learning} para estimação de T60 e DRR em AVCDs,
+Outra abordagem de trabalho futuro seria comparar os resultados obtidos com as RIRs geradas com o método de DA implementado e RIRs 
+geradas com programas de simulação acústicas, como o RAIOS \cite{RAIOS}.
+
+Também seria interessante propor um modelo de rede de \textit{deep learning} para estimação de T60 e DRR em AVCDs,
 realizando dois treinos; um com as RIRSMs e AVCDs geradas pelo algoritmo deste trabalho e outro somente com RIRs e AVCDs reais e 
 assim observar a eficácia da base de dados gerada artificialmente para treinamentos de redes.
+
+
+
+
 
 
 
