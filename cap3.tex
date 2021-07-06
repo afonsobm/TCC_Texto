@@ -1,5 +1,6 @@
 Este capítulo é dedicado ao desenvolvimento do primeiro algoritmo de \textit{Data Augmentation}, onde são geradas RIRs simuladas (RIRSM)
-a partir de RIRs originais (RIRO). São observados os parâmetros de razão Direto-Reverberante (DRR) e tempo de reverberação (T60), que são
+a partir de RIRs originais (RIRO) que foram gravadas em ambientes diversos e compõem o banco de dados AIR \cite{AIR_Database}. 
+São observados os parâmetros de razão Direto-Reverberante (DRR) e tempo de reverberação (T60), que são
 inferidos com base em uma RIRO e que serão manipulados pelo algoritmo para gerar RIRs que vão representar modelos acústicos diferentes.
 
 \begin{figure} [H]
@@ -10,10 +11,10 @@ inferidos com base em uma RIRO e que serão manipulados pelo algoritmo para gera
 \end{figure}
 
 Este trabalho é uma implementação dos passos demonstrados no artigo \cite{RIR_Data_Aug}. A figura \ref{fig:flow-rir-aug} especifica 
-o fluxo de procedimentos implantados por este algoritmo, onde a DRR e T60 alvos são os valores escolhidos pelo usuário que determinam
-as características da RIRSM. 
+o fluxo de procedimentos implantados por este algoritmo, onde a DRR e T60 alvos são os valores escolhidos pelo usuário ou sorteados aleatoriamente,
+que determinam as características da RIRSM. 
 
-Antes de explicar os métodos usados, é necessário definir duas funções; 
+Antes de explicar os métodos usados, é necessário definir duas funções \cite{RIR_Data_Aug}:
 
 \begin{align} 
     h_e(t) &= 
@@ -32,7 +33,7 @@ Antes de explicar os métodos usados, é necessário definir duas funções;
 \noindent
 onde $t$ representa o tempo discreto, $t_d$ o tempo que as ondas sonoras diretas, ou seja, sem reflexão, levam da fonte até o destino de gravação,
 $t_0$ a janela de tolerância, neste caso definida com o valor 2,5 ms \cite{RIR_Data_Aug}, 
-$h(t)$ uma RIR, $h_e(t)$ a resposta adiantada e $h_l(t)$ a resposta atrasada.
+$h(t)$ uma RIR, $h_e(t)$ a resposta inicial e $h_l(t)$ a resposta atrasada.
 Neste algoritmo, $t_d$ é determinado da forma:
 
 \begin{align} \label{eqn:t_d}
@@ -49,15 +50,15 @@ Neste algoritmo, $t_d$ é determinado da forma:
 
 
 A DRR representa a razão entre a energia sonora da resposta ao impulso que atinge o alvo diretamente e a energia reverberante,
-ou seja, que é refletida pelas paredes do ambiente fechado. Este parâmetro é definido da forma:
+ou seja, que é refletida pelas paredes do ambiente fechado. Este parâmetro é calculado pela seguinte expressão:
 
 \begin{equation} \label{eqn:DRR_def}
     DRR_{dB} = 10 \log_{10} \left( \frac{\sum_t h^2_e(t)}{\sum_t h^2_l(t)} \right).
 \end{equation}
 
-Para obter a DRR alvo desejada, aplica-se um fator de ganho escalar $\alpha$ na resposta adiantada $h_e(t)$.
-De acordo com \cite{RIR_Data_Aug}, para evitar descontinuidades durante o cálculo do fator $\alpha$, refatora-se a
-resposta adiantada em duas parcelas, uma que representa a janela direta no pico de intensidade de $h(t)$ e outra
+Para obter a DRR alvo desejada, aplica-se um fator de ganho escalar $\alpha$ na resposta inicial $h_e(t)$.
+De acordo com \cite{RIR_Data_Aug}, para evitar descontinuidades durante o cálculo do fator $\alpha$, reescreve-se a
+resposta inicial em duas parcelas, uma que representa a janela direta no pico de intensidade de $h(t)$ e outra
 que representa uma janela de resíduo de $h_e(t)$ formando, assim,
 
 \begin{equation} \label{eqn:new-h_e}
@@ -65,8 +66,8 @@ que representa uma janela de resíduo de $h_e(t)$ formando, assim,
 \end{equation}
 
 \noindent
-onde $w_d(t)$ representa uma janela de Hann de duração de 5 ms, pois a janela de tolerância $t_0 = 2,5$ ms.
-Substituindo na equação \ref{eqn:DRR_def} $h'_e(t)$ por $h'_e(t)$ e ajustando com a expressão \ref{eqn:new-h_e}, obtem-se
+onde $w_d(t)$ representa uma janela de Hann de duração de 5 ms, considerando-se uma janela de tolerância $t_0 = 2,5$ ms.
+Substituindo na Equação (\ref{eqn:DRR_def}) $h_e(t)$ por $h'_e(t)$ e combinando com a Equação (\ref{eqn:new-h_e}), obtém-se
 a seguinte equação quadrática;
 
 \begin{equation} \label{eqn:DRR_quad_eqn}
@@ -75,20 +76,23 @@ a seguinte equação quadrática;
         2 \alpha \sum_t [1 - w_d(t)] w_d(t) h^2_e(t) + \\
         \sum_t [1 - w_d(t)]^2 h^2_e(t) -
         10^{DRR_{dB}/10} \sum_t h^2_l(t)
-        = 0
-    \end{aligned}    
-    ,
+        = 0 ,
+    \end{aligned}
 \end{equation}
 
-O $\alpha$ desejado será a raiz de maior valor. 
+O parâmetro $\alpha$ desejado será a raiz de maior valor. 
 Uma ressalva deste procedimento é que se deve atentar para não escolher um $DRR_{dB}$ que não seja muito menor que o original,
 pois após a transformação do $h_e(t)$ para $h'_e(t)$, dependendo do valor de $\alpha$, é possível incidir em um caso onde
 $max(h'_e(t)) < max(h_l(t))$, tornando a RIRSM impraticável.
 
+A Figura \ref{fig:ir-early} exibe um exemplo de sinal $h(t)$ com o seu $h_e(t)$ após ser feita a modificação do DRR.
+Comparando $h_e(t)$ com $h'_e(t)$, de acordo com a Figura \ref{fig:drr-da}, nota-se que $h'_e(t)$  está com uma intensidade 
+maior, o que condiz a modificação do DRR de -4,5 para 4 neste exemplo.
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{ir-early.png}
-    \caption{Um exemplo de $h(t)$ com $h_e(t)$, onde é feita a DA do DRR, marcado em vermelho.}
+    \caption{Um exemplo de $h(t)$ com $h_e(t)$, onde é feita a modificação do DRR de -4,5 para 4, marcado em vermelho.}
     \label{fig:ir-early}
 \end{figure} 
 
@@ -104,8 +108,9 @@ $max(h'_e(t)) < max(h_l(t))$, tornando a RIRSM impraticável.
 
 
 O T60, definido na equação \ref{eqn:T60-def} representa a duração de tempo que leva para a energia sonora da RIR
-no alvo decair 60 dB comparado à sua intensidade máxima. Geralmente, devido à dificuldade de medir uma queda de 60 db,
-o fator medido é o T20 ou o T30 e depois multiplica-se os seus valores por 3 e 2, respectivamente, para obter o T60.
+no alvo decair 60 dB comparado à sua intensidade máxima. Geralmente, devido à dificuldade de medir uma queda de 60 dB,
+o parâmetro medido é o T20 ou o T30 e depois multiplica-se os seus valores por 3 e 2, respectivamente, para obter o T60,
+assumindo-se um decaimento exponencial da envoltória da RIR.
 
 \begin{align} \label{eqn:T60-def}
     \begin{cases}
@@ -117,7 +122,7 @@ o fator medido é o T20 ou o T30 e depois multiplica-se os seus valores por 3 e 
 \end{align}
 
 Para realizar modificações na RIR, é necessário modelar a resposta atrasada; de acordo com \cite{RIR_Data_Aug}
-um modelo normalmente usado é de um ruído gaussiano exponencialmente decadente, acrescido de um ruído de chão,
+um modelo normalmente usado é de um ruído gaussiano exponencialmente decadente, acrescido de um ruído de chão, ou seja,
 
 \begin{equation} \label{eqn:h_l-gauss}
     h_m(t) = A e^{-(t - t_o)/ \tau} n(t) u(t - t_o) + \sigma n(t)
@@ -125,11 +130,12 @@ um modelo normalmente usado é de um ruído gaussiano exponencialmente decadente
 \end{equation}
 
 \noindent
-onde $A$ representa o ganho da resposta ao impulso, $\tau$ a taxa de decaimento, $\sigma_m$ o ganho do ruído de chão, 
+onde $A$ representa o ganho da resposta ao impulso, $\tau$ a taxa de decaimento, $\sigma_m$ o desvio padrão do ruído de chão, 
 $n(t)$ um ruído gaussiano padrão (média nula e desvio padrão unitário), $t_o$ o valor temporal onde a resposta atrasada
 tem o seu primeiro valor não nulo e $u(t)$ um degrau unitário.
 Neste trabalho, diferente da implementação do algoritmo em \cite{RIR_Data_Aug}, é considerado apenas a taxa de decaimento
-do espectro de frequência por completo da RIR, ao invés de dividi-la em subbandas e analisar diferentes taxas para cada.
+do espectro de frequência por completo da RIR, ao invés de dividi-la em subbandas e analisar 
+a taxa de decaimento para cada faixa de frequência.
 
 Os parâmetros $A$, $\tau$ e $\sigma$ são estimados de acordo com o padrão definido na ISO 3382-1 \cite{ISO-3382}.
 Seja $T60_d$ o valor de T60 alvo para DA, é possível inferir a taxa de decaimento através da equação
@@ -155,16 +161,20 @@ Por fim, a RIRSM completa, $h'(t)$, pode ser representada pela equação
     .
 \end{equation}
 
+A Figura \ref{fig:ir-late} exibe um exemplo de sinal $h(t)$ com o seu $h_l(t)$ após ser feita a modificação do T60.
+Comparando $h_l(t)$ com $h'_l(t)$, de acordo com a Figura \ref{fig:t60-da}, nota-se que $h'_l(t)$  está com uma intensidade 
+maior, o que condiz a modificação do T60 de 1,38 para 2,6 segundos neste exemplo.
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{ir-late.png}
-    \caption{Um exemplo de $h(t)$ com $h_l(t)$, onde é feita a DA do T60, marcado em vermelho.}
+    \caption{Um exemplo de $h(t)$ com $h_l(t)$, onde é feita a modificação do T60 de 1,38 para 2,6 segundos, marcado em vermelho.}
     \label{fig:ir-late}
 \end{figure} 
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.3]{t60-da.png}
-    \caption{Um exemplo de um trecho ao final de $h_l(t)$ com e sem DA de T60, original em azul ($T60=1,38$) e com DA em vermelho ($T60=2,6$).}
+    \caption{Um exemplo de um trecho ao final de $h_l(t)$ com e sem DA de T60, original em azul ($T60=1,38$ s) e com DA em vermelho ($T60=2,6$ s).}
     \label{fig:t60-da}
 \end{figure} 
