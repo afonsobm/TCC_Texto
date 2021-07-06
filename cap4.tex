@@ -8,7 +8,7 @@ reverberadas em campo-distante (AVCDs) usando: amostras de voz anecóicas (AVAs)
     \label{fig:flow-voz-rev}
 \end{figure}
 
-Este trabalho é uma implementação do método de DA proposto no artigo \cite{Speech_Rec}. A figura \ref{fig:flow-voz-rev} especifica 
+Este trabalho é uma implementação do método de DA proposto no artigo \cite{Speech_Rec}. A Figura \ref{fig:flow-voz-rev} especifica 
 o fluxo de procedimentos implantados por este algoritmo, onde o SRP, SRF e SNR alvos são aleatoriamente escolhidos, 
 dentro de uma base de dados de ruídos e uma faixa de valores definidas pelo usuário, que determinam as características da AVCD. 
 
@@ -70,12 +70,17 @@ No Algoritmo \ref{alg:AVCD-gen} descreve-se o procedimento que é usado para ger
 \pagebreak
 
 
-Neste trabalho, o algoritmo de geração de AVCD usa as RIRSM geradas através do primeiro algoritmo, diferente do que foi implantado
+Neste trabalho, o algoritmo de geração de AVCD usa as RIRSMs geradas através do primeiro algoritmo, diferente do que foi implantado
 em \cite{Speech_Rec}, onde foram geradas RIRs de forma completamente digital \cite{RIR_sim_image}, ou seja, sem usar RIRs reais 
 como base para \textit{Data Augmentation}.
 Nota-se também que o algoritmo permite habilitar ou não o uso de cada tipo de ruído para que possa aumentar a variedade de dados gerados, além
 de acomodar mais propósitos de treinamentos de \textit{Deep Learning}.
 
+A Figura \ref{fig:voice-sample} exibe uma amostra de voz anecóica que foi usada para gerar os próximos exemplos de aplicação
+do algoritmo. É feita uma comparação entre a convolução da AVA com a RIRO e com a RIRSM, representadas nas Figuras \ref{fig:voice-aug-riro} e 
+\ref{fig:voice-aug-rirsm} respectivamente; pode-se notar que a convolução com a RIRSM causa menos modificações no formato do sinal de voz original 
+comparado à RIRO, uma vez que a primeira DA foi configurada para simular um ambiente menos reverberante (partindo dos parâmetros de $DRR=-4$ e $T60=1,38$ s
+na RIRO para $DRR=10$ e $T60=0,50$ s na RIRSM).
 
 \begin{figure} [H]
     \centering
@@ -86,14 +91,32 @@ de acomodar mais propósitos de treinamentos de \textit{Deep Learning}.
 
 \begin{figure} [H]
     \centering
-    \includegraphics[scale=0.3]{voice-aug.png}
-    \caption{Exemplo de amostra de voz reverberante, convoluída com uma RIRSM.}
-    \label{fig:voice-aug}
+    \includegraphics[scale=0.3]{voice-aug-riro.png}
+    \caption{Exemplo de amostra de voz reverberante, convoluída com uma RIRO, onde $DRR = -4$ e $T60=1,38$ s.}
+    \label{fig:voice-aug-riro}
 \end{figure} 
 
 \begin{figure} [H]
     \centering
-    \includegraphics[scale=0.3]{voice-noise.png}
-    \caption{Exemplo de amostra de voz em campo distante, representado pela voz reverberada mais os ruídos adicionados pelo segundo método de DA.}
-    \label{fig:voice-noise}
+    \includegraphics[scale=0.3]{voice-aug-rirsm.png}
+    \caption{Exemplo de amostra de voz reverberante, convoluída com uma RIRSM, onde $DRR = 10$ e $T60=0,50$ s.}
+    \label{fig:voice-aug-rirsm}
+\end{figure} 
+
+A partir da RIRSM usada nesta aplicação, foram geradas dois exemplos de AVCDs, representadas nas Figuras \ref{fig:voice-noise-14snr} e 
+\ref{fig:voice-noise-4snr}, esta com $SNR = 4$ e aquela com $SNR = 14$. Conforme o esperado, observa-se que a AVCD com o menor SNR
+possui ruídos claramente mais acentuados comparado à AVCD com o maior SNR.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[scale=0.3]{voice-noise-14snr.png}
+    \caption{Exemplo de amostra de voz em campo distante cujo $SNR = 14$, representado pela voz reverberada mais os ruídos adicionados pelo segundo método de DA.}
+    \label{fig:voice-noise-14snr}
+\end{figure} 
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[scale=0.3]{voice-noise-4snr.png}
+    \caption{Exemplo de amostra de voz em campo distante cujo $SNR = 4$, representado pela voz reverberada mais os ruídos adicionados pelo segundo método de DA.}
+    \label{fig:voice-noise-4snr}
 \end{figure} 

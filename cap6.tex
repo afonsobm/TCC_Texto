@@ -6,7 +6,7 @@ O código fonte da implementação dos algoritmos propostos se encontra no apên
 \section{Configuração dos parâmetros}
 
 As RIRSMs e AVCDs geradas nestes resultados usam as bases de dados de RIR, amostras de voz anecóicas e ruídos descritas no capítulo \ref{cap5}.
-As faixas de DRR, T60 e SNR usados são exibidos na tabela \ref{tbl:config-param}.
+As faixas de DRR, T60 e SNR usados são exibidos na Tabela \ref{tbl:config-param}.
 
 \begin{table} [H]
     \centering
@@ -33,7 +33,7 @@ de DA implementado.
 \subsection{\textit{Data Augmentation} do DRR}
 
 Esta seção observa a eficácia da \textit{Data Augmentation} do DRR; para isso, foram gerados três exemplos de RIRSMs, suas configurações
-são exibidas na tabela \ref{tbl:da-drr}, onde $DRR_{org}$ representa o DRR da RIR original, $DRR_{alvo}$ o valor de DRR desejado pelo usuário,
+são exibidas na Tabela \ref{tbl:da-drr}, onde $DRR_{org}$ representa o DRR da RIR original, $DRR_{alvo}$ o valor de DRR desejado pelo usuário,
 $DRR_{res}$ o valor de DRR resultante após DA e $\rho_{DRR}$ é o erro relativo definido da forma $\rho_{DRR} = abs(DRR_{res} - DRR_{alvo})/DRR_{alvo}$.
 
 \begin{table} [H]
@@ -73,7 +73,7 @@ $DRR_{res}$ o valor de DRR resultante após DA e $\rho_{DRR}$ é o erro relativo
 
 
 Nos exemplos gerados, na faixa determinada para o $DRR_{alvo}$, não houve diferença entre o $DRR_{alvo}$ e o $DRR_{res}$.
-É possível observar na figura \ref{fig:rir-aug-d1} que ocorreu um aumento na seção equivalente a $h_e(t)$ comparado à da figura \ref{fig:rir-og-d1}
+É possível observar na Figura \ref{fig:rir-aug-d1} que ocorreu um aumento na seção equivalente a $h_e(t)$ comparado à da Figura \ref{fig:rir-og-d1}
 para o exemplo D1.
 
 \begin{figure} [H]
@@ -93,7 +93,7 @@ para o exemplo D1.
 Foi realizado também um experimento empírico com uma pessoa que não possui prévio conhecimento dos resultados gerados.
 O objetivo desse experimento é medir o nível de “distância” do som, ou seja, a sensação subjetiva do locutor estar falando próximo ou distante
 do microfone.
-Foram geradas amostras de voz reverberadas (AVR) usando a RIROG e RIRSM e assim foram feitos dois testes subjetivos exibidos na tabela \ref{tbl:drr-exp}:
+Foram geradas amostras de voz reverberadas (AVR) usando a RIROG e RIRSM e assim foram feitos dois testes subjetivos exibidos na Tabela \ref{tbl:drr-exp}:
 o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIROG ou a convoluída RIRSM) está mais distante;
 já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais para menos distante entre as AVRs geradas com RIRSMs.
 
@@ -117,13 +117,13 @@ já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais 
     \end{tabular}
 \end{table}
 
-De acordo com a tabela \ref{tbl:drr-exp}, foi possível identificar precisamente a diferença de variações do DRR para as RIRSMs.
+De acordo com a Tabela \ref{tbl:drr-exp}, foi possível identificar precisamente a diferença de variações do DRR para as RIRSMs.
 
 
 \subsection{\textit{Data Augmentation} do T60}
 
 Esta seção observa a eficácia da \textit{Data Augmentation} do T60; para isso, foram gerados três exemplos de RIRSMs, suas configurações
-são exibidas na tabela \ref{tbl:da-t60}, onde $T60_{org}$ representa o T60 da RIR original, $T60_{alvo}$ o valor de T60 desejado pelo usuário,
+são exibidas na Tabela \ref{tbl:da-t60}, onde $T60_{org}$ representa o T60 da RIR original, $T60_{alvo}$ o valor de T60 desejado pelo usuário,
 $T60_{res}$ o valor de T60 resultante após DA e $\rho_{T60}$ é o erro definido da forma $\rho_{T60} = abs(T60_{res} - T60_{alvo})/T60_{alvo}$.
 
 \begin{table} [H]
@@ -164,8 +164,8 @@ $T60_{res}$ o valor de T60 resultante após DA e $\rho_{T60}$ é o erro definido
 Nos exemplos gerados, na faixa determinada para o $T60_{alvo}$, foi observada uma mínima diferença entre o $T60_{alvo}$ e o $T60_{res}$ no exemplo T2 e T3;
 já para o exemplo T1, notamos um erro considerável ao tentar reduzir o T60, o algoritmo proposto tem melhor acurácia para pequenas variações de T60 no caso de
 redução, contudo o mesmo não é observado para o aumento do T60, mesmo com grandes variações entre $T60_{alvo}$ e $T60_{res}$.
-É possível observar na figura \ref{fig:rir-aug-t2} que ocorreu uma redução no declínio da queda da exponencial na seção equivalente a $h_l(t)$
-comparado à figura \ref{fig:rir-og-t2} para o exemplo T2.
+É possível observar na Figura \ref{fig:rir-aug-t2} que ocorreu uma redução no declínio da queda da exponencial na seção equivalente a $h_l(t)$
+comparado à Figura \ref{fig:rir-og-t2} para o exemplo T2.
 
 \begin{figure} [H]
     \centering
@@ -183,7 +183,7 @@ comparado à figura \ref{fig:rir-og-t2} para o exemplo T2.
 
 De forma análoga aos resultados de DRR, foi feito um experimento empírico com o objetivo de medir o nível de “eco” do som, ou seja,
 a sensação subjetiva do locutor estar falando em um espaço fechado mais amplo, gerando reverberação.
-Foram geradas amostras de voz reverberadas (AVR) usando a RIROG e RIRSM e assim foram feitos dois testes subjetivos exibidos na tabela \ref{tbl:t60-exp}:
+Foram geradas amostras de voz reverberadas (AVR) usando a RIROG e RIRSM e assim foram feitos dois testes subjetivos exibidos na Tabela \ref{tbl:t60-exp}:
 o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIROG ou a convoluída RIRSM) está com mais eco;
 já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais para menos eco entre as AVRs geradas com RIRSMs.
 
@@ -243,8 +243,8 @@ a razão SNR desejada entre a AVCD gerada e os SRP e SRF inseridos.
     \begin{tabular}{c|c|c|c|c|c}
 
         \textbf{Exemplo} & 
-        \textbf{$DRR_{org}$ (db)} & 
-        \textbf{$DRR_{res}$ (db)} & 
+        \textbf{$DRR_{org}$ (dB)} & 
+        \textbf{$DRR_{res}$ (dB)} & 
         \textbf{$T60_{org}$ (s)} & 
         \textbf{$T60_{res}$ (s)} &
         \textbf{$SNR_{alvo}$} \\
@@ -259,8 +259,8 @@ a razão SNR desejada entre a AVCD gerada e os SRP e SRF inseridos.
     \end{tabular}
 \end{table}
 
-Abaixo temos os gráficos relativos ao exemplo N2, contendo a amostra de voz original na figura \ref{fig:voice-og-n2}, a amostra de voz reverberada
-com a RIRSM na figura \ref{fig:voice-aug-n2} e a amostra de voz em campo distante na figura \ref{fig:voice-ns-n2}.
+Abaixo temos os gráficos relativos ao exemplo N2, contendo a amostra de voz original na Figura \ref{fig:voice-og-n2}, a amostra de voz reverberada
+com a RIRSM na Figura \ref{fig:voice-aug-n2} e a amostra de voz em campo distante na Figura \ref{fig:voice-ns-n2}.
 
 \begin{figure} [H]
     \centering
@@ -283,13 +283,13 @@ com a RIRSM na figura \ref{fig:voice-aug-n2} e a amostra de voz em campo distant
     \label{fig:voice-ns-n2}
 \end{figure} 
 
-Conforme o esperado, observa-se que a figura \ref{fig:voice-ns-n2} possui um ruído de chão claramente visível comparado à figura \ref{fig:voice-aug-n2}.
+Conforme o esperado, observa-se que a Figura \ref{fig:voice-ns-n2} possui um ruído de chão claramente visível comparado à Figura \ref{fig:voice-aug-n2}.
 Nota-se também que na faixa de tempo entre 2000 e 4000 há picos sonoros que não são observados na amostra reverberada, os quais correspondem o ruído pontual
 introduzido no sinal.
 
 De forma análoga, foi feito outro experimento empírico com o objetivo de medir o nível de ruído do som, ou seja, 
 a sensação subjetiva de dificuldade de entender a fala do locutor devido aos outros sons misturados na amostra de voz.
-Foram usados as cinco AVCDs apresentadas nesta seção e o teste subjetivo é exibido na tabela \ref{tbl:noise-exp}, onde
+Foram usados as cinco AVCDs apresentadas nesta seção e o teste subjetivo é exibido na Tabela \ref{tbl:noise-exp}, onde
 a coluna “Ordem”, identifica a ordem de mais para menos ruído entre as AVCDs geradas.
 
 \begin{table} [H]

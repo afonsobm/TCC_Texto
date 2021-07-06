@@ -10,7 +10,7 @@ inferidos com base em uma RIRO e que serão manipulados pelo algoritmo para gera
     \label{fig:flow-rir-aug}
 \end{figure}
 
-Este trabalho é uma implementação dos passos demonstrados no artigo \cite{RIR_Data_Aug}. A figura \ref{fig:flow-rir-aug} especifica 
+Este trabalho é uma implementação dos passos demonstrados no artigo \cite{RIR_Data_Aug}. A Figura \ref{fig:flow-rir-aug} especifica 
 o fluxo de procedimentos implantados por este algoritmo, onde a DRR e T60 alvos são os valores escolhidos pelo usuário ou sorteados aleatoriamente,
 que determinam as características da RIRSM. 
 
@@ -40,7 +40,7 @@ Neste algoritmo, $t_d$ é determinado da forma:
     %t_d = t_{max},\ onde \ \ h(t_{max}) = max(h(t))
     \begin{cases}
         t_d = t_{max},\\
-        t_{max}, \ \text{onde} \ h(t_{max}) = max(h(t))
+        t_{max}, \ \text{onde} \ h(t_{max}) = max(|h(t)|)
     \end{cases}
     .
 \end{align}
