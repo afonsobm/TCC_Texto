@@ -1,6 +1,5 @@
 Este capítulo descreve os procedimentos e as configurações feitas para a implementação empírica da metodologia deste trabalho.
-Cada seção exibe um conjunto de gráficos relativos ao procedimento implementado para um único exemplo. Os gráficos obtidos para todos
-os exemplos se encontram no Apêndice \ref{ApendiceA}.
+Cada seção exibe um conjunto de gráficos relativos ao procedimento implementado para um único exemplo.
 O código fonte da implementação dos algoritmos propostos se encontra no Apêndice \ref{ApendiceB}.
 
 \section{Configuração dos parâmetros}
@@ -169,19 +168,21 @@ $T60_{res}$ o valor de T60 resultante após DA e $\rho_{T60}$ é o erro definido
 Nos exemplos gerados, na faixa determinada para o $T60_{alvo}$, foi observada uma mínima diferença entre o $T60_{alvo}$ e o $T60_{res}$ no exemplo T2 e T3.
 Para o exemplo T1, notamos um erro considerável ao tentar reduzir o T60, o algoritmo proposto tem melhor acurácia para pequenas variações de T60 no caso de
 redução, contudo o mesmo não é observado para o aumento do T60, mesmo com grandes variações entre $T60_{alvo}$ e $T60_{res}$.
+As Figuras \ref{fig:rir-og-t2} e \ref{fig:rir-aug-t2} exibem os gráficos das RIRs com intensidade em dB, ou seja, $10 log_{10}(h(t))$, para melhor 
+visualização da diferença de decaimento. 
 É possível observar na Figura \ref{fig:rir-aug-t2} que ocorreu um alongamento da queda exponencial, ou seja, a queda de energia da RIR
 acontece de forma mais lenta, na seção equivalente a $h_l(t)$ comparada à Figura \ref{fig:rir-og-t2} para o exemplo T2.
 
 \begin{figure} [H]
     \centering
-    \includegraphics[scale=0.25]{rir-og-t2.png}
+    \includegraphics[scale=0.25]{rir-og-t2-dB.png}
     \caption{RIR original do exemplo T2.}
     \label{fig:rir-og-t2}
 \end{figure} 
 
 \begin{figure} [H]
     \centering
-    \includegraphics[scale=0.25]{rir-aug-t2.png}
+    \includegraphics[scale=0.25]{rir-aug-t2-dB.png}
     \caption{RIR simulada do exemplo T2.}
     \label{fig:rir-aug-t2}
 \end{figure} 
