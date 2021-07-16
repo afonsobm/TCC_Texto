@@ -78,9 +78,9 @@ de acomodar mais propósitos de treinamentos de \textit{Deep Learning}.
 
 A Figura \ref{fig:voice-sample} exibe uma amostra de voz anecóica que foi usada para gerar os próximos exemplos de aplicação
 do algoritmo. É feita uma comparação entre a convolução da AVA com a RIRO e com a RIRSM, representadas nas Figuras \ref{fig:voice-aug-riro} e 
-\ref{fig:voice-aug-rirsm} respectivamente; pode-se notar que a convolução com a RIRSM causa menos modificações no formato do sinal de voz original 
-comparado à RIRO, uma vez que a primeira DA foi configurada para simular um ambiente menos reverberante (partindo dos parâmetros de $DRR=-4$ e $T60=1,38$ s
-na RIRO para $DRR=10$ e $T60=0,50$ s na RIRSM).
+\ref{fig:voice-aug-rirsm}, respectivamente; pode-se notar que a convolução com a RIRSM causa menos modificações no formato do sinal de voz original 
+comparado à RIRO, uma vez que a primeira DA foi configurada para simular um ambiente menos reverberante, partindo dos parâmetros $DRR=-4$ e $T60=1,38$ s
+na RIRO para $DRR=10$ e $T60=0,50$ s na RIRSM.
 
 \begin{figure} [H]
     \centering
@@ -103,20 +103,20 @@ na RIRO para $DRR=10$ e $T60=0,50$ s na RIRSM).
     \label{fig:voice-aug-rirsm}
 \end{figure} 
 
-A partir da RIRSM usada nesta aplicação, foram geradas dois exemplos de AVCDs, representadas nas Figuras \ref{fig:voice-noise-14snr} e 
+A partir da RIRSM usada nesta aplicação, foram gerados dois exemplos de AVCDs, representadas nas Figuras \ref{fig:voice-noise-14snr} e 
 \ref{fig:voice-noise-4snr}, esta com $SNR = 4$ e aquela com $SNR = 14$. Conforme o esperado, observa-se que a AVCD com o menor SNR
-possui ruídos claramente mais acentuados comparado à AVCD com o maior SNR.
+possui ruídos claramente mais acentuados comparada à AVCD com o maior SNR.
 
 \begin{figure} [H]
     \centering
     \includegraphics[scale=0.3]{voice-noise-14snr.png}
-    \caption{Exemplo de amostra de voz em campo distante cujo $SNR = 14$, representado pela voz reverberada mais os ruídos adicionados pelo segundo método de DA.}
+    \caption{Exemplo de amostra de voz em campo distante com $SNR = 14$, representada pela voz reverberada mais os ruídos adicionados pelo segundo método de DA.}
     \label{fig:voice-noise-14snr}
 \end{figure} 
 
 \begin{figure} [H]
     \centering
     \includegraphics[scale=0.3]{voice-noise-4snr.png}
-    \caption{Exemplo de amostra de voz em campo distante cujo $SNR = 4$, representado pela voz reverberada mais os ruídos adicionados pelo segundo método de DA.}
+    \caption{Exemplo de amostra de voz em campo distante com $SNR = 4$, representada pela voz reverberada mais os ruídos adicionados pelo segundo método de DA.}
     \label{fig:voice-noise-4snr}
 \end{figure} 

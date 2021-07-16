@@ -1,11 +1,11 @@
 Este capítulo descreve os procedimentos e as configurações feitas para a implementação empírica da metodologia deste trabalho.
-Cada seção exibe um conjunto de gráficos relativos ao procedimento implementado para um único exemplo, os gráficos obtidos para todos
+Cada seção exibe um conjunto de gráficos relativos ao procedimento implementado para um único exemplo; os gráficos obtidos para todos
 os exemplos se encontram no apêndice \ref{ApendiceA}.
 O código fonte da implementação dos algoritmos propostos se encontra no apêndice \ref{ApendiceB}.
 
 \section{Configuração dos parâmetros}
 
-As RIRSMs e AVCDs geradas nestes resultados usam as bases de dados de RIR, amostras de voz anecóicas e ruídos descritas no capítulo \ref{cap5}.
+As RIRSMs e AVCDs geradas nestes resultados usam as bases de dados de RIR, amostras de voz anecóicas e ruídos descritas no Capítulo \ref{cap5}.
 As faixas de DRR, T60 e SNR usados são exibidos na Tabela \ref{tbl:config-param}.
 
 \begin{table} [H]
@@ -93,8 +93,8 @@ para o exemplo D1.
 Foi realizado também um experimento empírico com uma pessoa que não possui prévio conhecimento dos resultados gerados.
 O objetivo desse experimento é medir o nível de “distância” do som, ou seja, a sensação subjetiva do locutor estar falando próximo ou distante
 do microfone.
-Foram geradas amostras de voz reverberadas (AVR) usando a RIROG e RIRSM e assim foram feitos dois testes subjetivos exibidos na Tabela \ref{tbl:drr-exp}:
-o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIROG ou a convoluída RIRSM) está mais distante;
+Foram geradas amostras de voz reverberadas (AVR) usando a RIRO e RIRSM e assim foram feitos dois testes subjetivos exibidos na Tabela \ref{tbl:drr-exp}:
+o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIRO ou a convoluída RIRSM) está mais distante;
 já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais para menos distante entre as AVRs geradas com RIRSMs.
 
 \begin{table} [H]
@@ -165,7 +165,7 @@ Nos exemplos gerados, na faixa determinada para o $T60_{alvo}$, foi observada um
 já para o exemplo T1, notamos um erro considerável ao tentar reduzir o T60, o algoritmo proposto tem melhor acurácia para pequenas variações de T60 no caso de
 redução, contudo o mesmo não é observado para o aumento do T60, mesmo com grandes variações entre $T60_{alvo}$ e $T60_{res}$.
 É possível observar na Figura \ref{fig:rir-aug-t2} que ocorreu uma redução no declínio da queda da exponencial na seção equivalente a $h_l(t)$
-comparado à Figura \ref{fig:rir-og-t2} para o exemplo T2.
+comparada à Figura \ref{fig:rir-og-t2} para o exemplo T2.
 
 \begin{figure} [H]
     \centering
@@ -183,8 +183,8 @@ comparado à Figura \ref{fig:rir-og-t2} para o exemplo T2.
 
 De forma análoga aos resultados de DRR, foi feito um experimento empírico com o objetivo de medir o nível de “eco” do som, ou seja,
 a sensação subjetiva do locutor estar falando em um espaço fechado mais amplo, gerando reverberação.
-Foram geradas amostras de voz reverberadas (AVR) usando a RIROG e RIRSM e assim foram feitos dois testes subjetivos exibidos na Tabela \ref{tbl:t60-exp}:
-o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIROG ou a convoluída RIRSM) está com mais eco;
+Foram geradas amostras de voz reverberadas (AVR) usando a RIRO e RIRSM, e assim foram feitos dois testes subjetivos exibidos na Tabela \ref{tbl:t60-exp}:
+o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIRO ou a convoluída RIRSM) está com mais eco;
 já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais para menos eco entre as AVRs geradas com RIRSMs.
 
 \begin{table} [H]
@@ -284,7 +284,7 @@ com a RIRSM na Figura \ref{fig:voice-aug-n2} e a amostra de voz em campo distant
 \end{figure} 
 
 Conforme o esperado, observa-se que a Figura \ref{fig:voice-ns-n2} possui um ruído de chão claramente visível comparado à Figura \ref{fig:voice-aug-n2}.
-Nota-se também que na faixa de tempo entre 2000 e 4000 há picos sonoros que não são observados na amostra reverberada, os quais correspondem o ruído pontual
+Nota-se também que na faixa de tempo entre 2000 e 4000 há picos sonoros que não são observados na amostra reverberada, os quais correspondem ao ruído pontual
 introduzido no sinal.
 
 De forma análoga, foi feito outro experimento empírico com o objetivo de medir o nível de ruído do som, ou seja, 
