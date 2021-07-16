@@ -13,9 +13,9 @@ Para a aplicação da metodologia deste trabalho, é necessário três fontes de
 A base de AVAs usada consiste na leitura de textos em inglês por 4 pessoas diferentes (duas vozes masculinas e duas femininas)
 gravadas em uma câmara anecóica para avaliação de algoritmos de cancelamento de eco acústico. 
 O eco foi adicionado artificialmente, de modo a efetuar experimentos controlados e com diferentes tempos de reverberação.
-Os arquivos de áudio são disponibilizados em formato WAV, com frequência de amostragem de 16 KHz, e cada gravação tem duração
-em torno de 5 a 6 segundos; no caso deste trabalho, foram concatenadas duas frases por pessoa na mesma 
-gravação devido ao tempo de duração dos ruídos pontuais que serão adicionados para a geração de AVCDs.
+Os arquivos de áudio são disponibilizados em formato WAV, com frequência de amostragem de 16 KHz e cada gravação tem duração
+em torno de 5 a 6 segundos. No caso deste trabalho, foram concatenadas duas frases por pessoa na mesma 
+gravação devido ao tempo de duração dos ruídos pontuais, que serão adicionados para a geração de AVCDs.
 
 A Tabela \ref{tbl:voice} descreve as gravações usadas neste projeto.
 
@@ -45,13 +45,13 @@ A Tabela \ref{tbl:voice} descreve as gravações usadas neste projeto.
 
 A base de AIR \cite{AIR_Database} é um conjunto de respostas ao impulso sonoras que foram medidas em diversas salas
 por pesquisadores do Instituto de Acústica (ITA) da Universidade RWTH, Aachen, Alemanha.
-O objetivo dessa base é de fornecer dados para estudos de algoritmos de processamento de sinais para ambientes reverberantes.
+O objetivo dessa base é fornecer dados para estudos de algoritmos de processamento de sinais para ambientes reverberantes.
 
-Ela é composta primariamente por RIRs binaurais medidas com ou sem uma cabeça falsa de manequim em locais com diferentes
-propriedades acústicas; é importante frisar também que a base possui gravações com diferentes distâncias entre a fonte sonora
+Ela é composta, primariamente, por RIRs binaurais medidas com uma cabeça de manequim em locais com diferentes
+propriedades acústicas. É importante frisar também que a base possui gravações com diferentes distâncias entre a fonte sonora
 e os microfones para a mesma sala, gerando funções com diferentes valores de DRR.
-A base também possui gravações em diferentes ângulos azimutais com o objetivo de auxiliar algoritmos de detecção
-de direção da fonte sonora; para o escopo deste projeto, tais RIRs não serão usadas. 
+A base também possui gravações em diferentes direções com o objetivo de auxiliar algoritmos de detecção
+de direção da fonte sonora. Para o escopo deste projeto, tais RIRs não serão usadas. 
 
 \begin{table} [H]
     \centering
@@ -83,14 +83,15 @@ via MATLAB\textregistered).
 \section{Base de ruídos - MUSAN}
 
 A base de MUSAN (\textit{A Music, Speech, and Noise Corpus}) \cite{noiseLib} consiste em um conjunto de músicas de diversos gêneros,
-amostras de voz de doze línguas e uma variedade de ruídos técnicos e não-técnicos.
+amostras de voz de doze línguas e uma variedade de ruídos técnicos, por exemplo tons DTMF e sons de uma máquina de fax, e ruídos de ambiente,
+por exemplo sons de animais e chuva.
 Ela foi criada primariamente para auxiliar no treinamento de modelos voltados para detecção de atividade de voz. 
 Contudo, ela é usada também para teste de algoritmos processamento de sinais na área de áudio, por exemplo, de reconhecimento de voz e orador.
 Uma das vantagens dessa base é o fato dela ser uma compilação de áudios com fontes em domínios públicos, facilitando a 
 distribuição dos áudios para uso da comunidade científica.
 
 No escopo deste projeto, será usada somente a seção de ruídos da base, que contém seis horas de áudio no total.
-A seção de ruídos é composta por sons técnicos de curta duração, que são usados como SRPs no segundo processo de 
+A seção de ruídos é composta por sons de curta duração, que são usados como SRPs no segundo processo de 
 \textit{Data Augmentation}, e por sons de ambiente, usados como SRFs no mesmo processo.
 
 \begin{table} [H]

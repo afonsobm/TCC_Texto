@@ -1,5 +1,5 @@
 Este capítulo descreve os procedimentos e as configurações feitas para a implementação empírica da metodologia deste trabalho.
-Cada seção exibe um conjunto de gráficos relativos ao procedimento implementado para um único exemplo; os gráficos obtidos para todos
+Cada seção exibe um conjunto de gráficos relativos ao procedimento implementado para um único exemplo. Os gráficos obtidos para todos
 os exemplos se encontram no Apêndice \ref{ApendiceA}.
 O código fonte da implementação dos algoritmos propostos se encontra no Apêndice \ref{ApendiceB}.
 
@@ -32,7 +32,7 @@ de DA implementado.
 
 \subsection{\textit{Data Augmentation} do DRR}
 
-Esta seção observa a eficácia da \textit{Data Augmentation} do DRR; para isso, foram gerados três exemplos de RIRSMs, suas configurações
+Esta seção apresenta os resultados da \textit{Data Augmentation} do DRR. Para isso, foram gerados três exemplos de RIRSMs. Suas configurações
 são exibidas na Tabela \ref{tbl:da-drr}, onde $DRR_{org}$ representa o DRR da RIR original, $DRR_{alvo}$ o valor de DRR desejado pelo usuário,
 $DRR_{res}$ o valor de DRR resultante após DA e $\rho_{DRR}$ é o erro relativo definido da forma $\rho_{DRR} = abs(DRR_{res} - DRR_{alvo})/DRR_{alvo}$.
 
@@ -90,8 +90,10 @@ para o exemplo D1.
     \label{fig:rir-aug-d1}
 \end{figure} 
 
-Foi realizado também um experimento subjetivo com uma pessoa que não possui prévio conhecimento dos resultados gerados.
-O objetivo desse experimento é medir o nível de “distância” do som, ou seja, a sensação subjetiva do locutor estar falando próximo ou distante
+Foi realizado também um experimento subjetivo com uma pessoa sem problemas auditivos, cuja idade é de 25 anos na data do experimento,  
+que não possui prévio conhecimento dos resultados gerados.
+A pessoa foi colocada em um quarto silencioso e foi usado um fone de ouvido para ouvir os aúdios gerados para este experimento.
+O objetivo é avaliar a percepção de “distância” do som, ou seja, a sensação subjetiva do locutor estar falando próximo ou distante
 do microfone.
 Foram geradas amostras de voz reverberadas (AVR) usando a RIRO e RIRSM e assim foram feitos dois testes subjetivos exibidos na Tabela \ref{tbl:drr-exp}:
 o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIRO ou a convoluída RIRSM) está mais distante;
@@ -110,19 +112,22 @@ já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais 
         \textbf{Ordem} \\
         \hline 
 
-        D1 & -4,5 & 10 & original & 2 \\
-        D2 & 4,7 & -2 & simulado & 1 \\
-        D3 & 0,5 & 18 & original & 3 \\
+        D2 & 4,7 & -2 & simulado & 1º \\
+        D1 & -4,5 & 10 & original & 2º \\
+        D3 & 0,5 & 18 & original & 3º \\
 
     \end{tabular}
 \end{table}
 
 De acordo com a Tabela \ref{tbl:drr-exp}, foi possível identificar precisamente a diferença de variações do DRR para as RIRSMs.
+Na coluna "Comparação" foi identificado que as RIRs com o menor DRR foram avaliadas subjetivamente como mais distantes.
+Na coluna "Ordem" as RIRSMs foram ordenadas conforme o esperado, ou seja, do menor para o maior $DRR_{res}$, pois um DRR menor reflete uma sensação
+de maior distância.
 
 
 \subsection{\textit{Data Augmentation} do T60}
 
-Esta seção observa a eficácia da \textit{Data Augmentation} do T60; para isso, foram gerados três exemplos de RIRSMs, suas configurações
+Esta seção apresenta os resultados da \textit{Data Augmentation} do T60. Para isso, foram gerados três exemplos de RIRSMs. Suas configurações
 são exibidas na Tabela \ref{tbl:da-t60}, onde $T60_{org}$ representa o T60 da RIR original, $T60_{alvo}$ o valor de T60 desejado pelo usuário,
 $T60_{res}$ o valor de T60 resultante após DA e $\rho_{T60}$ é o erro definido da forma $\rho_{T60} = abs(T60_{res} - T60_{alvo})/T60_{alvo}$.
 
@@ -161,31 +166,31 @@ $T60_{res}$ o valor de T60 resultante após DA e $\rho_{T60}$ é o erro definido
     \end{tabular}
 \end{table}
 
-Nos exemplos gerados, na faixa determinada para o $T60_{alvo}$, foi observada uma mínima diferença entre o $T60_{alvo}$ e o $T60_{res}$ no exemplo T2 e T3;
-já para o exemplo T1, notamos um erro considerável ao tentar reduzir o T60, o algoritmo proposto tem melhor acurácia para pequenas variações de T60 no caso de
+Nos exemplos gerados, na faixa determinada para o $T60_{alvo}$, foi observada uma mínima diferença entre o $T60_{alvo}$ e o $T60_{res}$ no exemplo T2 e T3.
+Para o exemplo T1, notamos um erro considerável ao tentar reduzir o T60, o algoritmo proposto tem melhor acurácia para pequenas variações de T60 no caso de
 redução, contudo o mesmo não é observado para o aumento do T60, mesmo com grandes variações entre $T60_{alvo}$ e $T60_{res}$.
-É possível observar na Figura \ref{fig:rir-aug-t2} que ocorreu uma redução no declínio da queda da exponencial na seção equivalente a $h_l(t)$
-comparada à Figura \ref{fig:rir-og-t2} para o exemplo T2.
+É possível observar na Figura \ref{fig:rir-aug-t2} que ocorreu um alongamento da queda exponencial, ou seja, a queda de energia da RIR
+acontece de forma mais lenta, na seção equivalente a $h_l(t)$ comparada à Figura \ref{fig:rir-og-t2} para o exemplo T2.
 
 \begin{figure} [H]
     \centering
-    \includegraphics[scale=0.25]{rir-og-d1.png}
+    \includegraphics[scale=0.25]{rir-og-t2.png}
     \caption{RIR original do exemplo T2.}
     \label{fig:rir-og-t2}
 \end{figure} 
 
 \begin{figure} [H]
     \centering
-    \includegraphics[scale=0.25]{rir-aug-d1.png}
+    \includegraphics[scale=0.25]{rir-aug-t2.png}
     \caption{RIR simulada do exemplo T2.}
     \label{fig:rir-aug-t2}
 \end{figure} 
 
-De forma análoga aos resultados de DRR, foi feito um experimento subjetivo com o objetivo de medir o nível de “eco” do som, ou seja,
-a sensação subjetiva do locutor estar falando em um espaço fechado mais amplo, gerando reverberação.
+De forma análoga aos resultados de DRR, foi feito um experimento subjetivo com o objetivo de avaliar a percepção de “reverberação” do som, ou seja,
+a sensação subjetiva do locutor estar falando em um espaço fechado mais amplo.
 Foram geradas amostras de voz reverberadas (AVR) usando a RIRO e RIRSM, e assim foram feitos dois testes subjetivos exibidos na Tabela \ref{tbl:t60-exp}:
-o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIRO ou a convoluída RIRSM) está com mais eco;
-já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais para menos eco entre as AVRs geradas com RIRSMs.
+o primeiro, representado pela coluna “Comparação”, identifica qual das AVRs (a convoluída com RIRO ou a convoluída RIRSM) está com mais reverberação.
+E o segundo, representado pela coluna “Ordem”, identifica a ordem ,entre as AVRs geradas com RIRSMs, de mais para menos reverberante.
 
 \begin{table} [H]
     \centering
@@ -200,22 +205,29 @@ já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais 
         \textbf{Ordem} \\
         \hline 
 
-        T1 & 1,38 & 1,01 & original & 2 \\
-        T2 & 1,01 & 1,89 & simulado & 1 \\
-        T3 & 0,75 & 0,60 & original & 3 \\
+        T2 & 1,01 & 1,89 & simulado & 1º \\
+        T1 & 1,38 & 1,01 & original & 2º \\
+        T3 & 0,75 & 0,60 & original & 3º \\
 
     \end{tabular}
 \end{table}
 
-De acordo com a Tabela \ref{tbl:t60-exp}, também foi possível identificar precisamente a diferença de variações do T60 para as RIRSMs,
-mesmo ocorrendo o $\rho$ elevado para T1, indicando que a DA está ocorrendo, mesmo não atingindo o $T60_{alvo}$.
+De acordo com a Tabela \ref{tbl:t60-exp}, também foi possível identificar precisamente a diferença de variações do T60 para as RIRSMs.
+Na coluna "Comparação" foi identificado que as RIRs com o maior T60 foram avaliadas subjetivamente como mais reverberantes.
+Na coluna "Ordem" as RIRSMs foram ordenadas conforme o esperado, ou seja, do maior para o menor $T60_{res}$, pois um T60 maior reflete a sensação
+de maior reverberação.
 
+Este resultado demonstra que a DA está ocorrendo, mesmo obtendo o $\rho_{T60}$ elevado para T1.
+A discrepância entre $T60_{alvo}$ e $T60_{res}$ pode ser inferida pelas diferenças de implementação entre a técnica de DA descrita no artigo 
+\cite{RIR_Data_Aug} e a técnica apresentada neste projeto. 
+
+%mesmo ocorrendo o $\rho$ elevado para T1, indicando que a DA está ocorrendo, mesmo não atingindo o $T60_{alvo}$.
 
 \subsection{\textit{Data Augmentation} de fala em campo distante}
 
-Esta seção observa a eficácia da \textit{Data Augmentation} de AVCDs; para isso, foram gerados cinco exemplos de AVCDs. Suas configurações
-são exibidas na Tabela \ref{tbl:da-noise}, onde além dos parâmetros descritos nas seções anteriores, é exibido o $SNR_{alvo}$ que representa
-a razão SNR desejada entre a AVCD gerada e os SRP e SRF inseridos.
+Por último, esta seção apresenta os resultados da \textit{Data Augmentation} de AVCDs. Para isso, 
+foram gerados cinco exemplos de AVCDs. Suas configurações são exibidas na Tabela \ref{tbl:da-noise}, onde além dos parâmetros descritos nas
+seções anteriores, é exibido o $SNR_{alvo}$ que representa a razão SNR desejada entre a AVCD gerada e os SRP e SRF inseridos.
 
 \begin{table} [H]
     \centering
@@ -283,14 +295,14 @@ com a RIRSM na Figura \ref{fig:voice-aug-n2} e a amostra de voz em campo distant
     \label{fig:voice-ns-n2}
 \end{figure} 
 
-Conforme o esperado, observa-se que a Figura \ref{fig:voice-ns-n2} possui um ruído de chão claramente visível comparado à Figura \ref{fig:voice-aug-n2}.
+Conforme o esperado, observa-se que a Figura \ref{fig:voice-ns-n2} possui um ruído residual claramente visível comparado à Figura \ref{fig:voice-aug-n2}.
 Nota-se também que na faixa de tempo entre 2000 e 4000 há picos sonoros que não são observados na amostra reverberada, os quais correspondem ao ruído pontual
 introduzido no sinal.
 
-De forma análoga, foi feito outro experimento subjetivo com o objetivo de medir o nível de ruído do som, ou seja, 
+De forma análoga, foi feito outro experimento subjetivo com o objetivo de avaliar a percepção de ruído do som, ou seja, 
 a sensação subjetiva de dificuldade de entender a fala do locutor devido aos outros sons misturados na amostra de voz.
-Foram usados as cinco AVCDs apresentadas nesta seção e o teste subjetivo é exibido na Tabela \ref{tbl:noise-exp}, onde
-a coluna “Ordem”, identifica a ordem de mais para menos ruído entre as AVCDs geradas.
+Foram usadas as cinco AVCDs apresentadas nesta seção e o teste subjetivo é exibido na Tabela \ref{tbl:noise-exp}, onde
+a coluna “Ordem” identifica a ordem dos sons de mais para menos ruidoso entre as AVCDs geradas.
 
 \begin{table} [H]
     \centering
@@ -303,15 +315,16 @@ a coluna “Ordem”, identifica a ordem de mais para menos ruído entre as AVCD
         \textbf{Ordem} \\
         \hline 
 
-        N1 &  5 & 3 \\
-        N2 & 10 & 4 \\
-        N3 & 14 & 1 \\
-        N4 & 19 & 5 \\
-        N5 &  3 & 2 \\
+        N3 & 14 & 1º \\
+        N5 &  3 & 2º \\
+        N1 &  5 & 3º \\
+        N2 & 10 & 4º \\
+        N4 & 19 & 5º \\
+        
 
     \end{tabular}
 \end{table}
 
-Observa-se que, em grande parte, os ruídos foram ordenados corretamente de nível decrescente de ruído, onde a única exceção foi o exemplo N3 votado como 
+Observa-se que, os ruídos foram ordenados corretamente de nível decrescente de ruído, onde a única exceção foi o exemplo N3 votado como 
 o mais ruidoso. De acordo com a pessoa que realizou os testes, o exemplo N3 possui um ruído pontual
 de longa duração (neste caso representado pelo ruído “porta abrindo”), e isso atrapalhou no reconhecimento da fala do locutor.
