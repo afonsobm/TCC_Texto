@@ -19,12 +19,12 @@ no mesmo ambiente da VR) e SRF (assumindo que o ruído de fundo não é afetado 
 É possível modelar uma AVCD conforme a equação
 
 \begin{equation} \label{eqn:AVCD-model}
-    S_{cd}[t] = S_a[t] \ast h[t] + \sum_i n_{pi}[t] \ast h[t] + n_f[t]
+    s_{cd}[t] = s_a[t] \ast h[t] + \sum_i n_{pi}[t] \ast h[t] + n_f[t]
     ,
 \end{equation}
 
 \noindent
-onde $S_{cd}[t]$ representa a AVCD, $S_a[t]$ a AVA, $h[t]$ a RIR, $n_{pi}[t]$ o i-ésimo SRP e $n_f[t]$ o SRF.
+onde $s_{cd}[t]$ representa a AVCD, $s_a[t]$ a AVA, $h[t]$ a RIR, $n_{pi}[t]$ o i-ésimo SRP e $n_f[t]$ o SRF.
 Neste trabalho, diferente da implementação do algoritmo em \cite{Speech_Rec}, é considerado apenas uma única RIR
 para gerar a AVCD, ou seja, os ruídos pontuais são convoluídos com a mesma RIR que é usada para a fonte de voz.
 
@@ -42,7 +42,7 @@ No Algoritmo \ref{alg:AVCD-gen} descreve-se o procedimento que é usado para ger
     \KwIn{$SNR_{up}$ : Limite superior de SNR} 
     \KwIn{$SNR_{dw}$ : Limite inferior de SNR} 
 
-    $S_r[t] \gets S_a[t] \ast h[t]$ : Convolução da RIR com AVA
+    $s_r[t] \gets s_a[t] \ast h[t]$ : Convolução da RIR com AVA
 
     \If{$fl_p = true$}
     {
@@ -52,7 +52,7 @@ No Algoritmo \ref{alg:AVCD-gen} descreve-se o procedimento que é usado para ger
             Escolha aleatória de uma SNR Alvo $SNR_t$ compreendida dentro do intervalo $[SNR_{dw},SNR_{up}]$. \\
             Dedução do fator $\alpha$ a partir da $SNR_t$ para corrigir a intensidade de $n_{pi}[t]$. \\
             Escolha aleatória de offset $o_t$ compreendida dentro do intervalo $(0,\text{duração(t)})$. \\
-            $S_r[t] \gets S_r[t] + \alpha \text{ offset}(n_{pi}[t] \ast h[t], o_t)$ : Adição de SRP na AVR.
+            $s_r[t] \gets s_r[t] + \alpha \text{ offset}(n_{pi}[t] \ast h[t], o_t)$ : Adição de SRP na AVR.
         }
     }
     \If{$fl_g = true$}
@@ -61,7 +61,7 @@ No Algoritmo \ref{alg:AVCD-gen} descreve-se o procedimento que é usado para ger
         Escolha aleatória de uma SNR Alvo $SNR_t$ compreendida dentro do intervalo $[SNR_{dw},SNR_{up}]$. \\
         Dedução do fator $\alpha$ a partir da $SNR_t$ para corrigir a intensidade de $n_f[t]$. \\
         Estender ou encurtar $n_f[t]$ até que $\text{duração }(n_f[t]) = \text{duração}(S_r[t])$
-        $S_r[t] \gets S_r[t] + \alpha n_f[t]$ : Adição de SRF na AVR.
+        $s_r[t] \gets s_r[t] + \alpha n_f[t]$ : Adição de SRF na AVR.
     }
 
 \end{algorithm}
@@ -78,7 +78,7 @@ de acomodar mais propósitos de treinamentos de \textit{Deep Learning}.
 
 A Figura \ref{fig:voice-sample} exibe uma amostra de voz anecóica que foi usada para gerar os próximos exemplos de aplicação
 do algoritmo. É feita uma comparação entre a convolução da AVA com a RIRO e com a RIRSM, representadas nas Figuras \ref{fig:voice-aug-riro} e 
-\ref{fig:voice-aug-rirsm}, respectivamente; pode-se notar que a convolução com a RIRSM causa menos modificações no formato do sinal de voz original 
+\ref{fig:voice-aug-rirsm}, respectivamente. Pode-se notar que a convolução com a RIRSM causa menos modificações no formato do sinal de voz original 
 comparado à RIRO, uma vez que a primeira DA foi configurada para simular um ambiente menos reverberante, partindo dos parâmetros $DRR=-4$ e $T60=1,38$ s
 na RIRO para $DRR=10$ e $T60=0,50$ s na RIRSM.
 

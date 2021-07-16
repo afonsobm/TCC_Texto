@@ -6,35 +6,37 @@ algumas aplicações onde este é usado, além de apresentar os desafios relacio
 Dentre os diversos tópicos na grande área de estudo de sinais de áudio, destacam-se a detecção e o reconhecimento de fontes acústicas no espaço físico.
 Um caso frequentemente encontrado em aplicações referentes a este tópico é o de sinais de voz gravados em ambientes fechados,
 onde um ou mais microfones são posicionados na sala afastados da fonte sonora.
-Estes sinais são corrompidos pela reverberação do ambiente, que surge a partir da sobreposição da onda sonora anecóica que chega ao microfone com a 
-onda sonora atenuada e refletida nas paredes do ambiente fechado. 
+Estes sinais são corrompidos pela reverberação do ambiente, que surge a partir da sobreposição da onda sonora anecóica que chega ao microfone com as 
+ondas sonoras atenuadas e refletidas nas paredes do ambiente fechado. 
 
 \begin{figure} [H]
     \begin{subfigure}{.5\textwidth}
         \centering
         \includegraphics[scale=0.4]{camara_anecoica.png}
-        \caption{Sala anecóica}    
+        \caption{Sala anecóica}
+        \label{fig:Rooms_a}    
     \end{subfigure}
     \begin{subfigure}{.5\textwidth}
         \centering
         \includegraphics[scale=0.4]{camara_reverb.png}
-        \caption{Sala reverberante}    
+        \caption{Sala reverberante}
+        \label{fig:Rooms_b}    
     \end{subfigure}
     \caption{Representação de uma sala anecóica e reverberante.}
     \label{fig:Rooms}
 \end{figure}
 
-Observa-se na Figura \ref{fig:Rooms} uma representação de uma sala anecóica, onde o único áudio capturado pelo microfone é a onda sonora direta
-enviada pela fonte, sem nenhuma reflexão do ambiente; já na sala reverberante, nota-se que o áudio capturado será uma combinação da onda sonora direta
-com as refletidas nas paredes. 
+Observa-se na Figura \ref{fig:Rooms_a} uma representação de uma sala anecóica, onde o único áudio capturado pelo microfone é a onda sonora direta
+enviada pela fonte, sem nenhuma reflexão do ambiente. Na sala reverberante, representada pela Figura \ref{fig:Rooms_b},
+nota-se que o áudio capturado será uma combinação da onda sonora direta com as refletidas nas paredes. 
 Este sinal reverberado pode ser modelado da seguinte forma:
 
 \begin{equation} \label{eqn:model}
-    Y(t) = s(t) \ast h(t) + n(t)
+    y(t) = s(t) \ast h(t) + n(t)
 \end{equation}
 
 \noindent
-onde $Y(t)$ representa o sinal de voz em campo distante, $s(t)$ o sinal de voz anecóico, $h(t)$ a RIR e $n(t)$ o sinal de ruído que pode
+onde $y(t)$ representa o sinal de voz em campo distante, $s(t)$ o sinal de voz anecóico, $h(t)$ a RIR e $n(t)$ o sinal de ruído que pode
 estar presente no ambiente.
 Dessa forma, é possível inferir que a RIR representa o modelo acústico de uma sala, para uma determinada combinação de fatores do ambiente, incluindo: 
 temperatura e umidade relativa do ar, pressão atmosférica, material das paredes e posicionamento de móveis.
@@ -73,26 +75,29 @@ das publicações são voltadas para o tópico de reconhecimento de voz usando t
     \label{fig:pub_DL}
 \end{figure}
 
-% ### TODO: desafio de faltar dado para deep learning
+
 Um dos maiores desafios enfrentados ao utilizar técnicas de \textit{Deep Learning} é de obter uma grande quantidade de dados para treinamento.
 Podem ser observados exemplos em \cite{Estimation_RT_DRR,ACE_Data_Aug_Eval}, onde os autores necessitaram agrupar dados de mais de 5 bases contendo
 RIRs para que fosse possível treinar e avaliar suas redes.
 No caso de bases de dados que envolvem RIRs, o motivo de não existir uma alta variedade de dados é devido às dificuldades
 de realizar gravações dos áudios \cite{Recording_RIR_2}.
-Para gerar um impulso sonoro, é necessário uma fonte sonora (por exemplo, um alto-falante) capaz de realizar uma varredura de senos com o mínimo de distorção
-possível, ou usar um equipamento para iniciar um som de decaimento rápido e de alta intensidade (por exemplo, um balão estourando) \cite{Recording_RIR}.
-A gravação do impulso requer microfones que estejam dentro de uma câmara anecóica, capacitando assim o microfone de gravar apenas o som vindo direto
-da fonte sonora, e não as ondas que são refletidas nas paredes.
+A RIR pode ser obtida com diversos tipos de sinal de excitação: varreduras de seno, sequencias pseudo aletórias. 
+De forma aproximada, pode-se usar estouro de balões \cite{Recording_RIR}.
+
+%Para gerar um impulso sonoro, é necessário uma fonte sonora (por exemplo, um alto-falante) capaz de realizar uma varredura de senos com o mínimo de distorção
+%possível, ou usar um equipamento para iniciar um som de decaimento rápido e de alta intensidade (por exemplo, um balão estourando) \cite{Recording_RIR}.
+% A gravação do impulso requer microfones que estejam dentro de uma câmara anecóica, capacitando assim o microfone de gravar apenas o som vindo direto
+% da fonte sonora, e não as ondas que são refletidas nas paredes.
 Não menos importante, para aumentar a quantidade de amostras na base, deve-se gravar o áudio não só em diferentes posições no ambiente
 e distâncias fonte-microfone, como também realizar estes mesmos procedimentos em ambientes diferentes, o que requer o transporte de diversos equipamentos
 especializados entre localizações físicas.
 
 \section{\textit{Data Augmentation}}
 
-\textit{Data Augmentation} representa um conjunto de técnicas que são usadas em dados já existentes com o intuito de gerar versões
+\textit{Data Augmentation} (DA) representa um conjunto de técnicas que são usadas em dados já existentes com o intuito de gerar versões
 modificadas que aumentam a representatividade dos dados disponíveis para uma determinada aplicação. 
 No contexto de \textit{Deep Learning}, essas técnicas tornam-se vitais para incrementar artificialmente bases de dados
-para treinamento que não possuem uma alta variedade de amostras, e isso inclui dados de áudio \cite{DL_Data_Aug_sc,Metric_Data_Aug_sc}.
+para treinamento que não possuem uma alta variedade de amostras e isso inclui dados de áudio \cite{DL_Data_Aug_sc,Metric_Data_Aug_sc}.
 
 \begin{figure} [H]
     \centering
@@ -103,6 +108,14 @@ para treinamento que não possuem uma alta variedade de amostras, e isso inclui 
 
 No escopo deste trabalho, de acordo com a Figura \ref{fig:flow-geral} usaremos duas técnicas de \textit{Data Augmentation} para gerar amostras
 de voz reverberantes. Uma das técnicas é voltada para simulação de RIRs, que altera suas propriedades para que possam ser simuladas diferentes condições
-e posições em um determinado ambiente; já a outra técnica é desenvolvida para simular ruídos no ambiente, que adiciona tanto ruídos pontuais em um trecho
-da amostra de voz, sendo este convoluído com a RIR real ou simulada, quanto um ruído de fundo. 
+e posições em um determinado ambiente.
+
+Outra técnica é desenvolvida para gerar amostras de voz em campo distante, usando as RIRs simuladas geradas pela primeira técnica e sinais de ruído.
+Na segunda técnica, serão utilizados dois tipos de ruídos: pontual e de fundo.
+O ruído pontual representa uma fonte sonora, além da amostra de voz anecóica, que está localizada no mesmo ambiente fechado em que ocorre 
+a geração da AVCD, mas que não faz parte do sinal que se dejesa detectar. 
+O ruído de fundo representa um fator sonoro externo ao ambiente fechado acrescentado à AVCD que prejudica a detecção da amostra de voz original em uma AVCD.
+
+%Outra técnica é desenvolvida para simular ruídos no ambiente, que adiciona tanto ruídos pontuais em um trecho
+%da amostra de voz, sendo este convoluído com a RIR real ou simulada, quanto um ruído de fundo. 
  
