@@ -1,9 +1,9 @@
-Este capítulo é dedicado ao desenvolvimento do segundo algoritmo de \textit{Data Augmentation}, onde são geradas as amostras de voz 
+Este capítulo é dedicado ao desenvolvimento do segundo algoritmo de aumento de dados, onde são geradas as amostras de voz 
 reverberadas em campo-distante (AVCDs) usando: amostras de voz anecóicas (AVAs), RIRSM, sinais de ruído pontuais (SRPs) e de fundo (SRFs).
 
 \begin{figure} [H]
     \centering
-    \includegraphics[scale=0.65]{flow-voz-aug.png}
+    \includegraphics[scale=0.65]{flow-voz-aug-ad.png}
     \caption{Fluxo de procedimentos para gerar a AVCD.} 
     \label{fig:flow-voz-rev}
 \end{figure}
@@ -72,7 +72,7 @@ No Algoritmo \ref{alg:AVCD-gen} descreve-se o procedimento que é usado para ger
 
 Neste trabalho, o algoritmo de geração de AVCD usa as RIRSMs geradas através do primeiro algoritmo, diferente do que foi implantado
 em \cite{Speech_Rec}, onde foram geradas RIRs de forma completamente digital \cite{RIR_sim_image}, ou seja, sem usar RIRs reais 
-como base para \textit{Data Augmentation}.
+como base para o aumento de dados.
 Nota-se também que o algoritmo permite habilitar ou não o uso de cada tipo de ruído para que possa aumentar a variedade de dados gerados, além
 de acomodar mais propósitos de treinamentos de \textit{Deep Learning}.
 

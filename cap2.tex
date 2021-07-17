@@ -92,21 +92,21 @@ Não menos importante, para aumentar a quantidade de amostras na base, deve-se g
 e distâncias fonte-microfone, como também realizar estes mesmos procedimentos em ambientes diferentes, o que requer o transporte de diversos equipamentos
 especializados entre localizações físicas.
 
-\section{\textit{Data Augmentation}}
+\section{Aumento de Dados}
 
-\textit{Data Augmentation} (DA) representa um conjunto de técnicas que são usadas em dados já existentes com o intuito de gerar versões
+Aumento de Dados (AD) representa um conjunto de técnicas que são usadas em dados já existentes com o intuito de gerar versões
 modificadas que aumentam a representatividade dos dados disponíveis para uma determinada aplicação. 
 No contexto de \textit{Deep Learning}, essas técnicas tornam-se vitais para incrementar artificialmente bases de dados
 para treinamento que não possuem uma alta variedade de amostras e isso inclui dados de áudio \cite{DL_Data_Aug_sc,Metric_Data_Aug_sc}.
 
 \begin{figure} [H]
     \centering
-    \includegraphics[scale=0.6]{flow-geral.png}
+    \includegraphics[scale=0.6]{flow-geral-ad.png}
     \caption{Fluxo geral de procedimentos para gerar sinais de voz reverberantes.}
     \label{fig:flow-geral}
 \end{figure} 
 
-No escopo deste trabalho, de acordo com a Figura \ref{fig:flow-geral} usaremos duas técnicas de \textit{Data Augmentation} para gerar amostras
+No escopo deste trabalho, de acordo com a Figura \ref{fig:flow-geral} usaremos duas técnicas de aumento de dados para gerar amostras
 de voz reverberantes. Uma das técnicas é voltada para simulação de RIRs, que altera suas propriedades para que possam ser simuladas diferentes condições
 e posições em um determinado ambiente.
 

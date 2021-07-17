@@ -84,16 +84,16 @@ Além das técnicas tradicionais de processamento de sinais, diversas soluções
 contudo estas acabam sendo limitadas devido à falta de variedade e quantidade de bases de RIRs medidas
 disponíveis para treinamento de redes neurais.
 
-Neste contexto, o objetivo deste projeto é de desenvolver um algoritmo, usando técnicas de \textit{data augmentation}, que gera amostras de voz
+Neste contexto, o objetivo deste projeto é de desenvolver um algoritmo, usando técnicas de aumento de dados, que gera amostras de voz
 em campo distante (AVCD), construindo assim uma base de dados para uso em treinamentos de soluções de \textit{deep learning}. 
-O algoritmo é composto por dois segmentos de \textit{data augmentation}: o primeiro modifica as características de razão direto-reverberante (DRR)
+O algoritmo é composto por dois segmentos de aumento de dados: o primeiro modifica as características de razão direto-reverberante (DRR)
 e tempo de reverberação (T60) do sinal acústico, partindo de RIRs reais, gerando RIRs simuladas (RIRSM);
 o segundo gera AVCDs, convoluindo amostras de voz anecóicas com as RIRSMs e adicionando ruídos à voz reverberada. 
 Ao final do trabalho, são exibidos exemplos de AVCDs geradas pelo algoritmo proposto, analisando se os dados gerados são válidos para uso 
 em treinamento de redes neurais.
 
 \paragraph{}
-\noindent Palavras-Chave: Resposta ao Impulso de sala, \textit{data augmentation}, \textit{deep learning}, reconhecimento de voz.
+\noindent Palavras-Chave: Resposta ao Impulso de sala, aumento de dados, \textit{deep learning}, reconhecimento de voz.
 
 \pagebreak
 
@@ -135,6 +135,7 @@ if they are valid to be used in neural network training.
 \end{center}
       \vspace{0.5cm}
 
+\paragraph{}AD - Aumento de dados
 \paragraph{}AIR - Aachen Impulse Response
 \paragraph{}AVA - Amostra de voz anecóica
 \paragraph{}AVCD - Amostra de voz em campo-distante
