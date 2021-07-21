@@ -18,7 +18,7 @@ As faixas de DRR, T60 e SNR usados são exibidos na Tabela \ref{tbl:config-param
 
         $DRR_{alvo}$ (dB) & $-6 \le DRR_{alvo} \le 18 $ \\
         $T60_{alvo}$ (s) & $T60_{org} - 1  \le T60_{alvo} \le T60_{org} + 1$ , onde o limite inferior de $T60_{alvo} = 0.2$ \\
-        $SNR_{alvo}$ & $3 \le SNR_{alvo} \le 20 $ \\
+        $SNR_{alvo}$ (dB) & $3 \le SNR_{alvo} \le 20 $ \\
 
     \end{tabular}
 \end{table}
@@ -119,8 +119,8 @@ já o segundo, representado pela coluna “Ordem”, identifica a ordem de mais 
 \end{table}
 
 De acordo com a Tabela \ref{tbl:drr-exp}, foi possível identificar precisamente a diferença de variações do DRR para as RIRSMs.
-Na coluna "Comparação" foi identificado que as RIRs com o menor DRR foram avaliadas subjetivamente como mais distantes.
-Na coluna "Ordem" as RIRSMs foram ordenadas conforme o esperado, ou seja, do menor para o maior $DRR_{res}$, pois um DRR menor reflete uma sensação
+Na coluna ``Comparação'' foi identificado que as RIRs com o menor DRR foram avaliadas subjetivamente como mais distantes.
+Na coluna ``Ordem'' as RIRSMs foram ordenadas conforme o esperado, ou seja, do menor para o maior $DRR_{res}$, pois um DRR menor reflete uma sensação
 de maior distância.
 
 
@@ -168,7 +168,7 @@ $T60_{res}$ o valor de T60 resultante após DA e $\rho_{T60}$ é o erro definido
 Nos exemplos gerados, na faixa determinada para o $T60_{alvo}$, foi observada uma mínima diferença entre o $T60_{alvo}$ e o $T60_{res}$ no exemplo T2 e T3.
 Para o exemplo T1, notamos um erro considerável ao tentar reduzir o T60, o algoritmo proposto tem melhor acurácia para pequenas variações de T60 no caso de
 redução, contudo o mesmo não é observado para o aumento do T60, mesmo com grandes variações entre $T60_{alvo}$ e $T60_{res}$.
-As Figuras \ref{fig:rir-og-t2} e \ref{fig:rir-aug-t2} exibem os gráficos das RIRs com intensidade em dB, ou seja, $10 log_{10}(h(t))$, para melhor 
+As Figuras \ref{fig:rir-og-t2} e \ref{fig:rir-aug-t2} exibem os gráficos das RIRs com intensidade em dB, ou seja, $10 log_{10}(|h(t)|)$, para melhor 
 visualização da diferença de decaimento. 
 É possível observar na Figura \ref{fig:rir-aug-t2} que ocorreu um alongamento da queda exponencial, ou seja, a queda de energia da RIR
 acontece de forma mais lenta, na seção equivalente a $h_l(t)$ comparada à Figura \ref{fig:rir-og-t2} para o exemplo T2.
@@ -214,8 +214,8 @@ E o segundo, representado pela coluna “Ordem”, identifica a ordem ,entre as 
 \end{table}
 
 De acordo com a Tabela \ref{tbl:t60-exp}, também foi possível identificar precisamente a diferença de variações do T60 para as RIRSMs.
-Na coluna "Comparação" foi identificado que as RIRs com o maior T60 foram avaliadas subjetivamente como mais reverberantes.
-Na coluna "Ordem" as RIRSMs foram ordenadas conforme o esperado, ou seja, do maior para o menor $T60_{res}$, pois um T60 maior reflete a sensação
+Na coluna ``Comparação'' foi identificado que as RIRs com o maior T60 foram avaliadas subjetivamente como mais reverberantes.
+Na coluna ``Ordem'' as RIRSMs foram ordenadas conforme o esperado, ou seja, do maior para o menor $T60_{res}$, pois um T60 maior reflete a sensação
 de maior reverberação.
 
 Este resultado demonstra que a DA está ocorrendo, mesmo obtendo o $\rho_{T60}$ elevado para T1.
@@ -260,7 +260,7 @@ seções anteriores, é exibido o $SNR_{alvo}$ que representa a razão SNR desej
         \textbf{$DRR_{res}$ (dB)} & 
         \textbf{$T60_{org}$ (s)} & 
         \textbf{$T60_{res}$ (s)} &
-        \textbf{$SNR_{alvo}$} \\
+        \textbf{$SNR_{alvo}$ (dB)} \\
         \hline 
 
         N1 & -4,5 & 17 & 1,38 & 0,56 & 5 \\
@@ -312,7 +312,7 @@ a coluna “Ordem” identifica a ordem dos sons de mais para menos ruidoso entr
     \begin{tabular}{c|c|c}
 
         \textbf{Exemplo} & 
-        \textbf{$SNR_{alvo}$ (s)} & 
+        \textbf{$SNR_{alvo}$ (dB)} & 
         \textbf{Ordem} \\
         \hline 
 
